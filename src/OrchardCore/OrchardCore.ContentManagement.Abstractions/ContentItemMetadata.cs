@@ -16,6 +16,6 @@ namespace OrchardCore.ContentManagement
         public RouteValueDictionary AdminRouteValues { get; set; }
 
         public IList<GroupInfo> DisplayGroupInfo = new List<GroupInfo>();
-        public readonly IList<GroupInfo> EditorGroupInfo = new List<GroupInfo>();
+        public IList<GroupInfo> EditorGroupInfo = new List<GroupInfo>();
     }
 }
