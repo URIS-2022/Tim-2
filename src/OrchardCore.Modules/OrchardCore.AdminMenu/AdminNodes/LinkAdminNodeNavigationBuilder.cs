@@ -52,7 +52,6 @@ namespace OrchardCore.AdminMenu.AdminNodes
                 node.IconClass?.Split(' ').ToList().ForEach(c => itemBuilder.AddClass("icon-class-" + c));
 
                 // Let children build themselves inside this MenuItem
-                // todo: this logic can be shared by all TreeNodeNavigationBuilders
                 foreach (var childTreeNode in menuItem.Items)
                 {
                     try

@@ -62,12 +62,9 @@ namespace OrchardCore.Admin
                 }
             }
 
-            foreach (var model in context.RouteModels.ToArray())
+            foreach (var model in context.RouteModels.ToArray().Where(model => adminPaths.Contains(model.RelativePath)))
             {
-                if (adminPaths.Contains(model.RelativePath))
-                {
-                    model.Properties["Admin"] = null;
-                }
+                model.Properties["Admin"] = null;
             }
         }
 
