@@ -59,7 +59,7 @@ namespace OrchardCore.Admin
             services.Configure<AdminOptions>(_configuration.GetSection("OrchardCore_Admin"));
         }
 
-        public override void Configure(IApplicationBuilder builder, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)
+        public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)
         {
             routes.MapAreaControllerRoute(
                 name: "Admin",
