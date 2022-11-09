@@ -96,7 +96,6 @@ namespace OrchardCore.AuditTrail.Services
             }
 
             var localNow = await _localClock.LocalNowAsync;
-            var startOfWeek = CultureInfo.CurrentUICulture.DateTimeFormat.FirstDayOfWeek;
             options.AuditTrailDates = new List<SelectListItem>()
             {
                 new SelectListItem(S["Any date"], String.Empty, options.Date == String.Empty),

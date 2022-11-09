@@ -47,10 +47,7 @@ namespace OrchardCore.Apis.GraphQL.ValidationRules
                     if (fieldDef == null)
                         return;
 
-                    // check target field
                     await AuthorizeNodePermissionAsync(fieldAst, fieldDef, validationContext, userContext);
-                    // check returned graph type
-                    //   AuthorizeNodePermissionAsync(fieldAst, fieldDef.ResolvedType.GetNamedType(), validationContext, userContext).GetAwaiter().GetResult(); // TODO: need to think of something to avoid this
                 })
             ));
         }

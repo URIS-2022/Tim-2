@@ -240,7 +240,9 @@ namespace OrchardCore.Workflows.Services
             else
             {
                 // Check if the current activity can execute.
-                var activityContext = workflowContext.GetActivity(activityRecord.ActivityId);
+                var activityContext = new ActivityContext();
+                if (activityRecord != null)
+                    activityContext = workflowContext.GetActivity(activityRecord.ActivityId);
                 if (await activityContext.Activity.CanExecuteAsync(workflowContext, activityContext))
                 {
                     // Signal every activity that the workflow is resumed.

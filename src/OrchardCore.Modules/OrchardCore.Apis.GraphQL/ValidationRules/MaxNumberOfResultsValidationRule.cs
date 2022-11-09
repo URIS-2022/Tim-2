@@ -60,7 +60,6 @@ namespace OrchardCore.Apis.GraphQL.ValidationRules
                         else
                         {
                             _logger.LogInformation(errorMessage);
-                            arg = new Argument(arg.NameNode, new IntValue(_maxNumberOfResults)); // if disabled mode we just log info and override the arg to be maxvalue
                         }
                     }
                 }

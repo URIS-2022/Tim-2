@@ -263,7 +263,7 @@ namespace OrchardCore.AdminMenu.Controllers
                 return NotFound();
             }
 
-            if (adminMenu.RemoveMenuItem(treeNode) == false)
+            if (!adminMenu.RemoveMenuItem(treeNode))
             {
                 return this.InternalServerError();
             }
@@ -332,12 +332,12 @@ namespace OrchardCore.AdminMenu.Controllers
 
             var destinationNode = adminMenu.GetMenuItemById(destinationNodeId); // don't check for null. When null the item will be moved to the root.
 
-            if (adminMenu.RemoveMenuItem(nodeToMove) == false)
+            if (!adminMenu.RemoveMenuItem(nodeToMove))
             {
                 return StatusCode(500);
             }
 
-            if (adminMenu.InsertMenuItemAt(nodeToMove, destinationNode, position) == false)
+            if (!adminMenu.InsertMenuItemAt(nodeToMove, destinationNode, position))
             {
                 return StatusCode(500);
             }
