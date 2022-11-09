@@ -109,7 +109,7 @@ namespace OrchardCore.ContentPreview.Controllers
                 return Ok();
             }
 
-            model = await _contentItemDisplayManager.BuildDisplayAsync(contentItem, _updateModelAccessor.ModelUpdater, "Detail");
+            var model = await _contentItemDisplayManager.BuildDisplayAsync(contentItem, _updateModelAccessor.ModelUpdater, "Detail");
 
             return View(model);
         }
