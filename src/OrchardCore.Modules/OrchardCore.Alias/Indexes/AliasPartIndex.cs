@@ -20,7 +20,7 @@ namespace OrchardCore.Alias.Indexes
         public bool Published { get; set; }
     }
 
-    public class AliasPartIndexProvider : ContentHandlerBase, IIndexProvider, IScopedIndexProvider
+    public class AliasPartIndexProvider : ContentHandlerBase, IScopedIndexProvider
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly HashSet<string> _partRemoved = new HashSet<string>();

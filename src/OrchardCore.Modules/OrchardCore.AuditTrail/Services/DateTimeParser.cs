@@ -160,7 +160,9 @@ namespace OrchardCore.AuditTrail.Services
 
     public static class DateTimeParser
     {
-        public static Parser<ExpressionNode> Parser;
+        private static Parser<ExpressionNode> parser;
+
+        public static Parser<ExpressionNode> Parser { get => parser; set => parser = value; }
 
         static DateTimeParser()
         {
@@ -251,6 +253,7 @@ namespace OrchardCore.AuditTrail.Services
                     })
                 .Or(rangeParser).Compile();
         }
+
     }
 
     public class DateTimeParseContext : ParseContext
