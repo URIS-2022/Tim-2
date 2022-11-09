@@ -70,9 +70,6 @@ namespace OrchardCore.Autoroute
         }
 
         // This code can be removed in a later version.
-        public int UpdateFrom4()
-        {
-            return 5;
-        }
+        public static int UpdateFrom4 = 5;
     }
 }
