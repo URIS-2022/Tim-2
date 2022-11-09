@@ -30,6 +30,8 @@ namespace OrchardCore.Tests.Environment.Cache
             sut.EnterScope(scopeD);
 
             sut.ExitScope();
+
+            Assert.Null(scopeA);
         }
 
         [Fact]
