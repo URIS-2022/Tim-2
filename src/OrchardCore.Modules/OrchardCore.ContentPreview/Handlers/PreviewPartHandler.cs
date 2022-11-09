@@ -60,8 +60,6 @@ namespace OrchardCore.ContentPreview.Handlers
                     previewAspect.PreviewUrl = previewAspect.PreviewUrl.Replace("\r", String.Empty).Replace("\n", String.Empty);
                 });
             }
-
-            return;
         }
     }
 }
