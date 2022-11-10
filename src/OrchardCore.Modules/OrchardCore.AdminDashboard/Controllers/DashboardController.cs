@@ -163,7 +163,7 @@ namespace OrchardCore.AdminDashboard.Controllers
 
                 _session.Save(contentItem);
 
-                if (contentItem.IsPublished() == false)
+                if (!contentItem.IsPublished())
                 {
                     var publishedVersion = publishedItems.Where(p => p.ContentItemId == contentItem.ContentItemId).FirstOrDefault();
                     var publishedMetaData = publishedVersion?.As<DashboardPart>();
