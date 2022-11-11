@@ -32,7 +32,7 @@
 
             <div class="btn-group input-group me-2" role="group" aria-label="Icon Selector">
                 <button type="button" class="btn btn-primary sample-icon">
-                    <i id="@("sample-icon-" + Html.IdFor(m=>m.IconClass))" class="@Model.IconClass"></i>
+                    <em id="@("sample-icon-" + Html.IdFor(m=>m.IconClass))" class="@Model.IconClass"></em>
                 </button>
                 <input type="hidden" name="@Html.NameFor(m=>m.IconClass)" id="@Html.IdFor(m => m.IconClass)" value="@Model.IconClass" />
                 <button type="button"
