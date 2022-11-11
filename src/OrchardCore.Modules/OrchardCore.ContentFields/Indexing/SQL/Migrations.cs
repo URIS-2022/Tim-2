@@ -643,24 +643,6 @@ namespace OrchardCore.ContentFields.Indexing.SQL
                     "Latest")
             );
 
-            // Can't be created on existing databases where the 'Url' may be of 768 chars.
-            //SchemaBuilder.AlterIndexTable<LinkFieldIndex>(table => table
-            //    .CreateIndex("IDX_LinkFieldIndex_DocumentId_Url",
-            //        "DocumentId",
-            //        "Url",
-            //        "Published",
-            //        "Latest")
-            //);
-
-            // Can't be created on existing databases where the 'Text' may be of 768 chars.
-            //SchemaBuilder.AlterIndexTable<LinkFieldIndex>(table => table
-            //    .CreateIndex("IDX_LinkFieldIndex_DocumentId_Text",
-            //        "DocumentId",
-            //        "Text",
-            //        "Published",
-            //        "Latest")
-            //);
-
             SchemaBuilder.AlterIndexTable<HtmlFieldIndex>(table => table
                 .CreateIndex("IDX_HtmlFieldIndex_DocumentId",
                     "DocumentId",

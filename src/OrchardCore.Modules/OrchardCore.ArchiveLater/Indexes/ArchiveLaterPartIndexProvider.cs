@@ -12,7 +12,7 @@ using YesSql.Indexes;
 
 namespace OrchardCore.ArchiveLater.Indexes;
 
-public class ArchiveLaterPartIndexProvider : ContentHandlerBase, IIndexProvider, IScopedIndexProvider
+public class ArchiveLaterPartIndexProvider : ContentHandlerBase, IScopedIndexProvider
 {
     private readonly IServiceProvider _serviceProvider;
     private readonly HashSet<string> _partRemoved = new();
