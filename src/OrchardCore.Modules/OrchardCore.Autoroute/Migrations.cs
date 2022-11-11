@@ -46,10 +46,7 @@ namespace OrchardCore.Autoroute
         }
 
         // This code can be removed in a later version.
-        public int UpdateFrom2()
-        {
-            return 3;
-        }
+        public const int UpdateFrom2 = 3;
 
         // This code can be removed in a later version.
         public int UpdateFrom3()

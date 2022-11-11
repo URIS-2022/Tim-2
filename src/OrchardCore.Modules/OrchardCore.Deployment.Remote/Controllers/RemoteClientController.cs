@@ -70,7 +70,7 @@ namespace OrchardCore.Deployment.Remote.Controllers
                 remoteClients = remoteClients.Where(x => x.ClientName.Contains(options.Search, StringComparison.OrdinalIgnoreCase)).ToList();
             }
 
-            var count = remoteClients.Count();
+            var count = remoteClients.Count;
 
             var startIndex = pager.GetStartIndex();
             var pageSize = pager.PageSize;

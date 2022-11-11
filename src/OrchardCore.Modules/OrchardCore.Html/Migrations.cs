@@ -70,7 +70,7 @@ namespace OrchardCore.Html
 
             var lastDocumentId = 0;
 
-            for (; ; )
+            while(true)
             {
                 var contentItemVersions = await _session.Query<ContentItem, ContentItemIndex>(x => x.DocumentId > lastDocumentId).Take(10).ListAsync();
 

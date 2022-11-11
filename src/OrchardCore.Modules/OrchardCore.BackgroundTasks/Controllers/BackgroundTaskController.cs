@@ -177,38 +177,7 @@ namespace OrchardCore.BackgroundTasks.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(BackgroundTaskViewModel model)
         {
-            if (!await _authorizationService.AuthorizeAsync(User, Permissions.ManageBackgroundTasks))
-            {
-                return Forbid();
-            }
-
-            if (ModelState.IsValid)
-            {
-                if (String.IsNullOrWhiteSpace(model.Name))
-                {
-                    ModelState.AddModelError(nameof(BackgroundTaskViewModel.Name), S["The name is mandatory."]);
-                }
-            }
-
-            if (ModelState.IsValid)
-            {
-                var settings = new BackgroundTaskSettings
-                {
-                    Name = model.Name,
-                    Enable = model.Enable,
-                    Schedule = model.Schedule?.Trim(),
-                    Description = model.Description,
-                    LockTimeout = model.LockTimeout,
-                    LockExpiration = model.LockExpiration
-                };
-
-                await _backgroundTaskManager.UpdateAsync(model.Name, settings);
-
-                return RedirectToAction(nameof(Index));
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            return await CreatePost(model);
         }
 
         [HttpPost]

@@ -160,7 +160,9 @@ namespace OrchardCore.AuditTrail.Services
 
     public static class DateTimeParser
     {
-        public static Parser<ExpressionNode> Parser;
+        private static Parser<ExpressionNode> parser;
+
+        public static Parser<ExpressionNode> Parser { get; set; }
 
         static DateTimeParser()
         {
@@ -205,7 +207,7 @@ namespace OrchardCore.AuditTrail.Services
                     else
                     {
                         var success = true;
-                        if (!DateTime.TryParse(dateValue, context.CultureInfo, DateTimeStyles.None, out var dateTime) == true && !DateTime.TryParse(dateValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime) == true)
+                        if (!DateTime.TryParse(dateValue, context.CultureInfo, DateTimeStyles.None, out var dateTime) && !DateTime.TryParse(dateValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
                         {
                             success = false;
                         }
@@ -248,6 +250,7 @@ namespace OrchardCore.AuditTrail.Services
                     })
                 .Or(rangeParser).Compile();
         }
+
     }
 
     public class DateTimeParseContext : ParseContext
