@@ -14,7 +14,6 @@ namespace OrchardCore.AdminMenu.AdminNodes
         private readonly ILogger _logger;
         private readonly IAdminMenuPermissionService _adminMenuPermissionService;
 
-
         public LinkAdminNodeNavigationBuilder(IAdminMenuPermissionService adminMenuPermissionService, ILogger<LinkAdminNodeNavigationBuilder> logger)
         {
             _adminMenuPermissionService = adminMenuPermissionService;
@@ -65,21 +64,6 @@ namespace OrchardCore.AdminMenu.AdminNodes
                     }
                 }
             });
-        }
-
-        // Add adminNode's IconClass property values to menuItem.Classes.
-        // Add them with a prefix so that later the shape template can extract them to use them on a <i> tag.
-        private void AddIconPickerClassToLink(string iconClass, NavigationItemBuilder itemBuilder)
-        {
-            if (String.IsNullOrEmpty(iconClass))
-            {
-                return;
-            }
-
-            foreach (var c in iconClass.Split(' '))
-            {
-                itemBuilder.AddClass("icon-class-" + c);
-            }
         }
     }
 }

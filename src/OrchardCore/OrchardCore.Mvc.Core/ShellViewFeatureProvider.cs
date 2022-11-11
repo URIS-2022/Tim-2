@@ -15,6 +15,8 @@ namespace OrchardCore.Mvc
 {
     public class ShellViewFeatureProvider : IApplicationFeatureProvider<ViewsFeature>, IApplicationFeatureProvider<DevelopmentViewsFeature>
     {
+        private static readonly object _locker = new object();
+
         private readonly IHostEnvironment _hostingEnvironment;
         private readonly IApplicationContext _applicationContext;
 
@@ -170,7 +172,7 @@ namespace OrchardCore.Mvc
 
             if (services != null && _featureProviders == null)
             {
-                lock (this)
+                lock (_locker)
                 {
                     if (_featureProviders == null)
                     {

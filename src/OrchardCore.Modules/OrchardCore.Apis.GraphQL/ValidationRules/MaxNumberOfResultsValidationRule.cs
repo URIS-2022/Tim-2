@@ -24,15 +24,13 @@ namespace OrchardCore.Apis.GraphQL.ValidationRules
             _logger = logger;
         }
 
-        public Task<INodeVisitor> ValidateAsync(ValidationContext validationContext)
+        public Task<INodeVisitor> ValidateAsync(ValidationContext context)
         {
             return Task.FromResult((INodeVisitor)new NodeVisitors(
             new MatchingNodeVisitor<Argument>((arg, visitorContext) =>
             {
                 if ((arg.Name == "first" || arg.Name == "last") && arg.Value != null)
                 {
-                    var context = (GraphQLUserContext)validationContext.UserContext;
-
                     int? value = null;
 
                     if (arg.Value is IntValue)
@@ -41,7 +39,7 @@ namespace OrchardCore.Apis.GraphQL.ValidationRules
                     }
                     else
                     {
-                        if (validationContext.Inputs.TryGetValue(arg.Value.ToString(), out var input))
+                        if (context.Inputs.TryGetValue(arg.Value.ToString(), out var input))
                         {
                             value = (int?)input;
                         }
@@ -53,8 +51,8 @@ namespace OrchardCore.Apis.GraphQL.ValidationRules
 
                         if (_maxNumberOfResultsValidationMode == MaxNumberOfResultsValidationMode.Enabled)
                         {
-                            validationContext.ReportError(new ValidationError(
-                                validationContext.Document.OriginalQuery,
+                            context.ReportError(new ValidationError(
+                            context.Document.OriginalQuery,
                                 "ArgumentInputError",
                                 errorMessage,
                                 arg));
@@ -62,7 +60,6 @@ namespace OrchardCore.Apis.GraphQL.ValidationRules
                         else
                         {
                             _logger.LogInformation(errorMessage);
-                            arg = new Argument(arg.NameNode, new IntValue(_maxNumberOfResults)); // if disabled mode we just log info and override the arg to be maxvalue
                         }
                     }
                 }

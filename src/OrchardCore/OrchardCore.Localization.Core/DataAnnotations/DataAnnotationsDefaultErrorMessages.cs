@@ -5,7 +5,7 @@ namespace OrchardCore.Localization.DataAnnotations
     /// <summary>
     /// This is just a marker class to allow the POExtractor to extract the default error messages for data annotations attributes.
     /// </summary>
-    internal sealed class DataAnnotationsDefaultErrorMessages
+    public sealed class DataAnnotationsDefaultErrorMessages
     {
         private readonly IStringLocalizer S = null;
 

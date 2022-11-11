@@ -13,6 +13,7 @@ namespace OrchardCore.Environment.Shell.Builders
 {
     public class ShellContainerFactory : IShellContainerFactory
     {
+        private static readonly object _locker = new object();
         private IFeatureInfo _applicationFeature;
 
         private readonly IHostEnvironment _hostingEnvironment;
@@ -187,7 +188,7 @@ namespace OrchardCore.Environment.Shell.Builders
         {
             if (_applicationFeature == null)
             {
-                lock (this)
+                lock (_locker)
                 {
                     if (_applicationFeature == null)
                     {
