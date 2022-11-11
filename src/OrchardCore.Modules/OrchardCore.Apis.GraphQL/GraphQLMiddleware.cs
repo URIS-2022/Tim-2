@@ -161,11 +161,16 @@ namespace OrchardCore.Apis.GraphQL
                 _.RequestServices = context.RequestServices;
             });
 
-            context.Response.StatusCode = (int)(result.Errors == null || result.Errors.Count == 0
-                ? HttpStatusCode.OK
-                : result.Errors.Any(x => x is ValidationError ve && ve.Number == RequiresPermissionValidationRule.ErrorCode)
+            if (result.Errors == null || result.Errors.Count == 0)
+            {
+                context.Response.StatusCode = (int)(HttpStatusCode.OK);
+            }
+            else
+            {
+                context.Response.StatusCode = (int)(result.Errors.Any(x => x is ValidationError ve && ve.Number == RequiresPermissionValidationRule.ErrorCode)
                     ? HttpStatusCode.Unauthorized
                     : HttpStatusCode.BadRequest);
+            }
 
             context.Response.ContentType = MediaTypeNames.Application.Json;
 

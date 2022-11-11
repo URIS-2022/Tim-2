@@ -162,7 +162,7 @@ namespace OrchardCore.AuditTrail.Services
     {
         private static Parser<ExpressionNode> parser;
 
-        public static Parser<ExpressionNode> Parser { get => parser; set => parser = value; }
+        public static Parser<ExpressionNode> Parser { get; set; }
 
         static DateTimeParser()
         {
