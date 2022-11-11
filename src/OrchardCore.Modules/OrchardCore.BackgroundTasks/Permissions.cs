@@ -25,7 +25,7 @@ namespace OrchardCore.BackgroundTasks
             };
         }
 
-        private IEnumerable<Permission> GetPermissions()
+        private static IEnumerable<Permission> GetPermissions()
         {
             return new[] { ManageBackgroundTasks };
         }
