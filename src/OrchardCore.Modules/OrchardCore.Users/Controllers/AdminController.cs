@@ -100,7 +100,6 @@ namespace OrchardCore.Users.Controllers
             var options = new UserIndexOptions();
 
             // Populate route values to maintain previous route data when generating page links
-            // await _userOptionsDisplayManager.UpdateEditorAsync(options, _updateModelAccessor.ModelUpdater, false);
             options.FilterResult = queryFilterResult;
             options.FilterResult.MapTo(options);
 
