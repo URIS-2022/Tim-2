@@ -7,6 +7,8 @@ using OrchardCore.ContentManagement;
 using YesSql;
 
 
+namespace AliasPartRazorHelperExtensions
+{
     public static class AliasPartRazorHelperExtensions
     {
         /// <summary>
@@ -51,4 +53,5 @@ using YesSql;
             return await contentManager.GetAsync(contentItemId, latest ? VersionOptions.Latest : VersionOptions.Published);
         }
     }
+}
 
