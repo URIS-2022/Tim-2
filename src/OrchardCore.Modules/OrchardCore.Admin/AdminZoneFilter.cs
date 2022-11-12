@@ -20,12 +20,9 @@ namespace OrchardCore.Admin
                     AdminAttribute.Apply(context.HttpContext);
                 }
             }
-            else if (context.ActionDescriptor is PageActionDescriptor page)
+            else if (context.ActionDescriptor is PageActionDescriptor page && page.ViewEnginePath.Contains("/Admin/"))
             {
-                if (page.ViewEnginePath.Contains("/Admin/"))
-                {
-                    AdminAttribute.Apply(context.HttpContext);
-                }
+                AdminAttribute.Apply(context.HttpContext);
             }
 
             return next();

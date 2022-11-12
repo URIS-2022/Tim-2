@@ -62,17 +62,15 @@ namespace OrchardCore.Admin
                 }
             }
 
-            foreach (var model in context.RouteModels.ToArray())
+            foreach (var model in context.RouteModels.ToArray().Where(model => adminPaths.Contains(model.RelativePath)))
             {
-                if (adminPaths.Contains(model.RelativePath))
-                {
-                    model.Properties["Admin"] = null;
-                }
+                model.Properties["Admin"] = null;
             }
         }
 
         public void OnProvidersExecuted(PageRouteModelProviderContext context)
         {
+            //Implementation missing
         }
 
         private IEnumerable<CompiledViewDescriptor> GetPageDescriptors<T>(ApplicationPartManager applicationManager) where T : ViewsFeature, new()

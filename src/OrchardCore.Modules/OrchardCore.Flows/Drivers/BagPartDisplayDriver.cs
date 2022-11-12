@@ -118,8 +118,6 @@ namespace OrchardCore.Flows.Drivers
                     contentItem.Merge(existingContentItem);
                 }
 
-                var widgetModel = await contentItemDisplayManager.UpdateEditorAsync(contentItem, context.Updater, context.IsNew, htmlFieldPrefix: model.Prefixes[i]);
-
                 contentItems.Add(contentItem);
             }
 

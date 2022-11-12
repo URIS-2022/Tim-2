@@ -160,7 +160,9 @@ namespace OrchardCore.AuditTrail.Services
 
     public static class DateTimeParser
     {
-        public static Parser<ExpressionNode> Parser;
+        private static Parser<ExpressionNode> parser;
+
+        public static Parser<ExpressionNode> Parser { get; set; }
 
         static DateTimeParser()
         {
@@ -205,12 +207,9 @@ namespace OrchardCore.AuditTrail.Services
                     else
                     {
                         var success = true;
-                        if (!DateTime.TryParse(dateValue, context.CultureInfo, DateTimeStyles.None, out var dateTime))
+                        if (!DateTime.TryParse(dateValue, context.CultureInfo, DateTimeStyles.None, out var dateTime) && !DateTime.TryParse(dateValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
                         {
-                            if (!DateTime.TryParse(dateValue, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
-                            {
-                                success = false;
-                            }
+                            success = false;
                         }
 
                         // If no timezone is specified, assume local using the configured timezone
@@ -222,6 +221,7 @@ namespace OrchardCore.AuditTrail.Services
                     }
 
                     throw new ParseException("Could not parse date", context.Scanner.Cursor.Position);
+
                 });
 
             var currentParser = OneOf(nowParser, todayParser);
@@ -251,6 +251,7 @@ namespace OrchardCore.AuditTrail.Services
                     })
                 .Or(rangeParser).Compile();
         }
+
     }
 
     public class DateTimeParseContext : ParseContext

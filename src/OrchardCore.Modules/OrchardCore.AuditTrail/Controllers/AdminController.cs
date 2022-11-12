@@ -27,7 +27,6 @@ namespace OrchardCore.AuditTrail.Controllers
         private readonly IAuditTrailAdminListQueryService _auditTrailAdminListQueryService;
         private readonly IDisplayManager<AuditTrailEvent> _displayManager;
         private readonly IDisplayManager<AuditTrailIndexOptions> _auditTrailOptionsDisplayManager;
-        private readonly IStringLocalizer S;
 
         public AdminController(
             IOptions<PagerOptions> pagerOptions,
@@ -48,7 +47,6 @@ namespace OrchardCore.AuditTrail.Controllers
             _auditTrailAdminListQueryService = auditTrailAdminListQueryService;
             _displayManager = displayManager;
             _auditTrailOptionsDisplayManager = auditTrailOptionsDisplayManager;
-            S = stringLocalizer;
         }
 
         public async Task<ActionResult> Index([ModelBinder(BinderType = typeof(AuditTrailFilterEngineModelBinder), Name = "q")] QueryFilterResult<AuditTrailEvent> queryFilterResult, PagerParameters pagerParameters, string correlationId = "")
