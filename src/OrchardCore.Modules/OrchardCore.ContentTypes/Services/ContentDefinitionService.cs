@@ -416,7 +416,7 @@ namespace OrchardCore.ContentTypes.Services
             {
                 for (var i = 0; i < fieldNames.Length; i++)
                 {
-                    var fieldDefinition = partDefinition.Fields.FirstOrDefault(x => x.Name == fieldNames[i]);
+                    
                     type.WithField(fieldNames[i], field =>
                     {
                         field.MergeSettings<ContentPartFieldSettings>(x => x.Position = i.ToString());
