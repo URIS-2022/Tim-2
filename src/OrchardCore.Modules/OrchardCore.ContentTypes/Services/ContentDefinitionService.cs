@@ -143,15 +143,15 @@ namespace OrchardCore.ContentTypes.Services
             // first remove all attached parts
             var typeDefinition = _contentDefinitionManager.LoadTypeDefinition(name);
             var partDefinitions = typeDefinition.Parts.ToArray();
-            foreach (var partDefinition in partDefinitions)
+            foreach (var partDefinition in partDefinitions.Select(partDefinition=> partDefinition.PartDefinition.Name == name))
             {
-                RemovePartFromType(partDefinition.PartDefinition.Name, name);
+               // RemovePartFromType(partDefinition.PartDefinition.Name, name);
 
                 // delete the part if it's its own part
-                if (partDefinition.PartDefinition.Name == name)
-                {
+               
+                
                     RemovePart(name);
-                }
+                
             }
 
             _contentDefinitionManager.DeleteTypeDefinition(name);
