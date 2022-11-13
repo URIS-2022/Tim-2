@@ -6,6 +6,8 @@ using OrchardCore.Alias.Services;
 using OrchardCore.ContentManagement;
 using YesSql;
 
+namespace OrchardCore.Alias.Razor
+{
 
     public static class AliasPartRazorHelperExtensions
     {
@@ -52,3 +54,4 @@ using YesSql;
         }
     }
 
+}
