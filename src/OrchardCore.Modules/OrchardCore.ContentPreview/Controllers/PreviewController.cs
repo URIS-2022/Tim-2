@@ -76,8 +76,6 @@ namespace OrchardCore.ContentPreview.Controllers
             contentItem.PublishedUtc = _clock.UtcNow;
             contentItem.Published = true;
 
-            // TODO: we should probably get this value from the main editor as it might impact validators
-
             if (!ModelState.IsValid)
             {
                 var errors = new List<string>();

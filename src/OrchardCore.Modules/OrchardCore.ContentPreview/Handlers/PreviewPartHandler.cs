@@ -33,7 +33,9 @@ namespace OrchardCore.ContentPreview.Handlers
         {
             var contentTypeDefinition = _contentDefinitionManager.GetTypeDefinition(part.ContentItem.ContentType);
             var contentTypePartDefinition = contentTypeDefinition.Parts.FirstOrDefault(x => String.Equals(x.PartDefinition.Name, "PreviewPart"));
-            var pattern = contentTypePartDefinition.GetSettings<PreviewPartSettings>().Pattern;
+            var pattern = "";
+            if (contentTypePartDefinition != null)
+                pattern = contentTypePartDefinition.GetSettings<PreviewPartSettings>().Pattern;
 
             return pattern;
         }
@@ -58,8 +60,6 @@ namespace OrchardCore.ContentPreview.Handlers
                     previewAspect.PreviewUrl = previewAspect.PreviewUrl.Replace("\r", String.Empty).Replace("\n", String.Empty);
                 });
             }
-
-            return;
         }
     }
 }

@@ -445,16 +445,8 @@ namespace OrchardCore.Tests.DisplayManagement.Decriptors
 
                 var manager = _serviceProvider.GetService<IShapeTableManager>();
                 var hello = manager.GetShapeTable(null).Descriptors["Hello"];
-                //var result = hello.Placement(new ShapePlacementContext { Path = context });
 
-                //if (match)
-                //{
-                //    Assert.Equal("Match", result.Location);
-                //}
-                //else
-                //{
-                //    Assert.Null(result.Location);
-                //}
+                Assert.Null(rule.Item1);
             }
         }
 

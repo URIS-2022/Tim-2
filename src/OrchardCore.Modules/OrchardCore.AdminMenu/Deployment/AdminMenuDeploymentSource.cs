@@ -38,8 +38,6 @@ namespace OrchardCore.AdminMenu.Deployment
                 var objectData = JObject.FromObject(adminMenu, serializer);
                 data.Add(objectData);
             }
-
-            return;
         }
     }
 }

@@ -160,7 +160,9 @@ namespace OrchardCore.AuditTrail.Services
 
     public static class DateTimeParser
     {
-        public static Parser<ExpressionNode> Parser;
+        private static Parser<ExpressionNode> parser;
+
+        public static Parser<ExpressionNode> Parser { get; set; }
 
         static DateTimeParser()
         {
@@ -219,6 +221,7 @@ namespace OrchardCore.AuditTrail.Services
                     }
 
                     throw new ParseException("Could not parse date", context.Scanner.Cursor.Position);
+
                 });
 
             var currentParser = OneOf(nowParser, todayParser);
@@ -248,6 +251,7 @@ namespace OrchardCore.AuditTrail.Services
                     })
                 .Or(rangeParser).Compile();
         }
+
     }
 
     public class DateTimeParseContext : ParseContext

@@ -32,12 +32,7 @@ namespace OrchardCore.AdminDashboard.Controllers
         private readonly IContentItemDisplayManager _contentItemDisplayManager;
         private readonly IContentDefinitionManager _contentDefinitionManager;
         private readonly IUpdateModelAccessor _updateModelAccessor;
-        private readonly INotifier _notifier;
-        private readonly IStringLocalizer S;
-        private readonly IHtmlLocalizer H;
-        private readonly dynamic New;
         private readonly YesSql.ISession _session;
-        private readonly ILogger _logger;
 
         public DashboardController(
             IAuthorizationService authorizationService,
@@ -45,13 +40,7 @@ namespace OrchardCore.AdminDashboard.Controllers
             IContentManager contentManager,
             IContentItemDisplayManager contentItemDisplayManager,
             IContentDefinitionManager contentDefinitionManager,
-            IUpdateModelAccessor updateModelAccessor,
-            IShapeFactory shapeFactory,
-            INotifier notifier,
-            IStringLocalizer<DashboardController> stringLocalizer,
-            IHtmlLocalizer<DashboardController> htmlLocalizer,
-            YesSql.ISession session,
-            ILogger<DashboardController> logger)
+            IUpdateModelAccessor updateModelAccessor)
         {
             _authorizationService = authorizationService;
             _adminDashboardService = adminDashboardService;
@@ -59,12 +48,6 @@ namespace OrchardCore.AdminDashboard.Controllers
             _contentItemDisplayManager = contentItemDisplayManager;
             _contentDefinitionManager = contentDefinitionManager;
             _updateModelAccessor = updateModelAccessor;
-            New = shapeFactory;
-            _notifier = notifier;
-            S = stringLocalizer;
-            H = htmlLocalizer;
-            _session = session;
-            _logger = logger;
         }
 
         public async Task<IActionResult> Index()
@@ -180,7 +163,7 @@ namespace OrchardCore.AdminDashboard.Controllers
 
                 _session.Save(contentItem);
 
-                if (contentItem.IsPublished() == false)
+                if (!contentItem.IsPublished())
                 {
                     var publishedVersion = publishedItems.Where(p => p.ContentItemId == contentItem.ContentItemId).FirstOrDefault();
                     var publishedMetaData = publishedVersion?.As<DashboardPart>();

@@ -15,7 +15,6 @@ namespace OrchardCore.Apis.GraphQL
             return _defaultConverter.NameForArgument(argumentName, parentGraphType, field);
         }
 
-        // TODO: check functionality
         public string NameForField(string fieldName, IComplexGraphType parentGraphType)
         {
             var attributes = parentGraphType?.GetType().GetCustomAttributes(typeof(GraphQLFieldNameAttribute), true);
