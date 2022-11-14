@@ -114,12 +114,9 @@ namespace OrchardCore.BackgroundTasks.Controllers
                 return Forbid();
             }
 
-            if (ModelState.IsValid)
-            {
-                if (String.IsNullOrWhiteSpace(model.Name))
-                {
-                    ModelState.AddModelError(nameof(BackgroundTaskViewModel.Name), S["The name is mandatory."]);
-                }
+            if (ModelState.IsValid && String.IsNullOrWhiteSpace(model.Name))
+            { 
+                ModelState.AddModelError(nameof(BackgroundTaskViewModel.Name), S["The name is mandatory."]); 
             }
 
             if (ModelState.IsValid)

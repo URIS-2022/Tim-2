@@ -160,8 +160,6 @@ namespace OrchardCore.AuditTrail.Services
 
     public static class DateTimeParser
     {
-        private static Parser<ExpressionNode> parser;
-
         public static Parser<ExpressionNode> Parser { get; set; }
 
         static DateTimeParser()

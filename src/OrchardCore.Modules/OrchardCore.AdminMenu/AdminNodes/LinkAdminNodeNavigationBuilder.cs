@@ -22,9 +22,9 @@ namespace OrchardCore.AdminMenu.AdminNodes
 
         public string Name => typeof(LinkAdminNode).Name;
 
-        public Task BuildNavigationAsync(MenuItem menuItem, NavigationBuilder builder, IEnumerable<IAdminNodeNavigationBuilder> treeNodeBuilders)
+        public Task BuildNavigationAsync(MenuItem treeNode, NavigationBuilder builder, IEnumerable<IAdminNodeNavigationBuilder> treeNodeBuilders)
         {
-            var node = menuItem as LinkAdminNode;
+            var node = treeNode as LinkAdminNode;
 
             if (node == null || String.IsNullOrEmpty(node.LinkText) || !node.Enabled)
             {
@@ -51,7 +51,7 @@ namespace OrchardCore.AdminMenu.AdminNodes
                 node.IconClass?.Split(' ').ToList().ForEach(c => itemBuilder.AddClass("icon-class-" + c));
 
                 // Let children build themselves inside this MenuItem
-                foreach (var childTreeNode in menuItem.Items)
+                foreach (var childTreeNode in treeNode.Items)
                 {
                     try
                     {

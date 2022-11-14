@@ -33,12 +33,9 @@ namespace OrchardCore.HomeRoute.Routing
 
                 if (address.ExplicitValues.Count > homeRoute.Count)
                 {
-                    foreach (var entry in address.ExplicitValues)
+                    foreach (var entry in address.ExplicitValues.Where(entry => !homeRoute.ContainsKey(entry.Key)))
                     {
-                        if (!homeRoute.ContainsKey(entry.Key))
-                        {
-                            routeValues.Remove(entry.Key);
-                        }
+                        routeValues.Remove(entry.Key);
                     }
                 }
 
