@@ -262,7 +262,7 @@ namespace OrchardCore.Queries.Sql
 
                 if (idList.ChildNodes[i].ChildNodes[1].ChildNodes.Count > 0)
                 {
-                    _builder.Append(" ").Append(idList.ChildNodes[i].ChildNodes[1].ChildNodes[0].Term.Name);
+                    _builder.Append(' ').Append(idList.ChildNodes[i].ChildNodes[1].ChildNodes[0].Term.Name);
                 }
             }
 
@@ -858,7 +858,7 @@ namespace OrchardCore.Queries.Sql
                 _builder.Append(")");
             }
 
-            _builder.Append(" ");
+            _builder.Append(' ');
 
             return _builder.ToString();
         }

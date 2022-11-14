@@ -58,6 +58,7 @@ namespace OrchardCore.Redis.Services
 
         public void Dispose()
         {
+            GC.SuppressFinalize(this);
             if (Connection != null)
             {
                 Connection.Close();
