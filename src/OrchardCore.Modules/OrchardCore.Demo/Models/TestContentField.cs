@@ -4,6 +4,8 @@ namespace OrchardCore.Demo.Models
 {
     public class TestContentField : ContentField
     {
-        public string Text;
+        private string text;
+
+        public string Text { get; set; }
     }
 }

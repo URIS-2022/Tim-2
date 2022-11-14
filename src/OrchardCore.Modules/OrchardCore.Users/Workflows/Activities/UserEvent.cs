@@ -8,7 +8,7 @@ namespace OrchardCore.Users.Workflows.Activities
 {
     public abstract class UserEvent : UserActivity, IEvent
     {
-        public UserEvent(IUserService userService, IWorkflowScriptEvaluator scriptEvaluator, IStringLocalizer localizer) : base(userService, scriptEvaluator, localizer)
+        protected UserEvent(IUserService userService, IWorkflowScriptEvaluator scriptEvaluator, IStringLocalizer localizer) : base(userService, scriptEvaluator, localizer)
         {
         }
 

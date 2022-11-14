@@ -9,7 +9,7 @@ namespace OrchardCore.Localization.DataAnnotations
     {
         private readonly IStringLocalizer S = null;
 
-        private DataAnnotationsDefaultErrorMessages()
+        public DataAnnotationsDefaultErrorMessages()
         {
 
         }

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace OrchardCore.Environment.Shell.Descriptor.Models
 {
-    public class ShellFeature : IEquatable<ShellFeature>
+    public sealed class ShellFeature : IEquatable<ShellFeature>
     {
         public ShellFeature()
         {
