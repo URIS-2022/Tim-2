@@ -42,7 +42,7 @@ namespace OrchardCore.ContentTypes.RecipeSteps
             return Task.CompletedTask;
         }
 
-        private class DeleteContentDefinitionStepModel
+        private sealed class DeleteContentDefinitionStepModel
         {
             public string[] ContentTypes { get; set; } = Array.Empty<string>();
             public string[] ContentParts { get; set; } = Array.Empty<string>();

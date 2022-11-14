@@ -73,7 +73,6 @@ namespace OrchardCore.Flows.Drivers
 
         public override async Task<IDisplayResult> UpdateAsync(BagPart part, UpdatePartEditorContext context)
         {
-            var contentItemDisplayManager = _serviceProvider.GetRequiredService<IContentItemDisplayManager>();
             var contentDefinitionManager = _serviceProvider.GetRequiredService<IContentDefinitionManager>();
 
             var model = new BagPartEditViewModel { BagPart = part };
@@ -117,8 +116,6 @@ namespace OrchardCore.Flows.Drivers
                     contentItem.ContentItemId = model.ContentItems[i];
                     contentItem.Merge(existingContentItem);
                 }
-
-                var widgetModel = await contentItemDisplayManager.UpdateEditorAsync(contentItem, context.Updater, context.IsNew, htmlFieldPrefix: model.Prefixes[i]);
 
                 contentItems.Add(contentItem);
             }

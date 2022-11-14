@@ -46,11 +46,9 @@ namespace OrchardCore.ContentTypes.Services
                 logger.LogWarning("The content field '{ContentField}' should not be registerd in DI. Use AddContentField<T> instead.", element);
             }
 
-            // TODO: This code can be removed in a future release and rationalized to only use ContentPartOptions.
             _contentPartTypes = contentParts.Select(cp => cp.GetType())
                 .Union(contentOptions.Value.ContentPartOptions.Select(cpo => cpo.Type));
 
-            // TODO: This code can be removed in a future release and rationalized to only use ContentFieldOptions.
             _contentFieldTypes = contentFields.Select(cf => cf.GetType())
                 .Union(contentOptions.Value.ContentFieldOptions.Select(cfo => cfo.Type));
 
@@ -143,15 +141,15 @@ namespace OrchardCore.ContentTypes.Services
             // first remove all attached parts
             var typeDefinition = _contentDefinitionManager.LoadTypeDefinition(name);
             var partDefinitions = typeDefinition.Parts.ToArray();
-            foreach (var partDefinition in partDefinitions)
+            foreach (var partDefinition in partDefinitions.Select(partDefinition=> partDefinition.PartDefinition.Name == name))
             {
-                RemovePartFromType(partDefinition.PartDefinition.Name, name);
+               // RemovePartFromType(partDefinition.PartDefinition.Name, name);
 
                 // delete the part if it's its own part
-                if (partDefinition.PartDefinition.Name == name)
-                {
+               
+                
                     RemovePart(name);
-                }
+                
             }
 
             _contentDefinitionManager.DeleteTypeDefinition(name);
@@ -416,7 +414,7 @@ namespace OrchardCore.ContentTypes.Services
             {
                 for (var i = 0; i < fieldNames.Length; i++)
                 {
-                    var fieldDefinition = partDefinition.Fields.FirstOrDefault(x => x.Name == fieldNames[i]);
+                    
                     type.WithField(fieldNames[i], field =>
                     {
                         field.MergeSettings<ContentPartFieldSettings>(x => x.Position = i.ToString());

@@ -18,7 +18,7 @@ namespace OrchardCore.DisplayManagement.Liquid
         public static string DefaultRazorViewPath = '/' + DefaultLiquidViewName + RazorViewEngine.ViewExtension;
         public static string DefaultLiquidViewPath = '/' + DefaultLiquidViewName + LiquidViewTemplate.ViewExtension;
 
-        private static List<string> _sharedPaths;
+        private List<string> _sharedPaths;
         private static object _synLock = new object();
 
         public LiquidViewsFeatureProvider(IOptions<TemplateOptions> templateOptions)

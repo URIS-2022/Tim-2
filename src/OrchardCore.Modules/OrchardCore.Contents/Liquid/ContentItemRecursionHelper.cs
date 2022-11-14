@@ -3,7 +3,7 @@ using OrchardCore.ContentManagement;
 
 namespace OrchardCore.Contents.Liquid
 {
-    public interface IContentItemRecursionHelper<T>
+    public interface IContentItemRecursionHelper
     {
         /// <summary>
         /// Returns <see langword="True"/> when the <see cref="ContentItem"/> has already been evaluated during this request by the particular filter./>
@@ -12,7 +12,7 @@ namespace OrchardCore.Contents.Liquid
     }
 
     /// <inheritdocs />
-    public class ContentItemRecursionHelper<T> : IContentItemRecursionHelper<T>
+    public class ContentItemRecursionHelper<T> : IContentItemRecursionHelper
     {
         private Dictionary<ContentItem, int> _recursions = new Dictionary<ContentItem, int>();
 
