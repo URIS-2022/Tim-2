@@ -36,12 +36,9 @@ namespace OrchardCore.ContentLocalization.Security
 
             Permission permission = null;
 
-            if (contentItem != null)
+            if (contentItem != null && OwnerVariationExists(requirement.Permission) && HasOwnership(context.User, contentItem))
             {
-                if (OwnerVariationExists(requirement.Permission) && HasOwnership(context.User, contentItem))
-                {
-                    permission = GetOwnerVariation(requirement.Permission);
-                }
+                  permission = GetOwnerVariation(requirement.Permission);             
             }
 
             if (permission == null)

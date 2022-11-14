@@ -45,6 +45,12 @@ namespace OrchardCore.Html
             return 3;
         }
 
+        const int UpdateFrom1 = 2;
+
+        // This code can be removed in a later version.
+        
+        const int UpdateFrom2 = 3;
+
         // This code can be removed in a later version.
         public async Task<int> UpdateFrom3()
         {

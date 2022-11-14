@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace OrchardCore.Data.Documents
 {
@@ -23,6 +24,10 @@ namespace OrchardCore.Data.Documents
         /// <param name="message">The message that describes the error.</param>
         /// <param name="innerException">The inner <see cref="Exception"/>.</param>
         public DocumentStoreCommitException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected DocumentStoreCommitException(SerializationInfo info, StreamingContext context)
         {
         }
     }

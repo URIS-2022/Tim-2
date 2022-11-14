@@ -29,10 +29,7 @@ namespace OrchardCore.Features.Services
             H = htmlLocalizer;
         }
 
-        /// <summary>
-        /// Retrieves an enumeration of the available features together with its state (enabled / disabled).
-        /// </summary>
-        /// <returns>An enumeration of the available features together with its state (enabled / disabled).</returns>
+       
         public async Task<IEnumerable<ModuleFeature>> GetAvailableFeaturesAsync()
         {
             var enabledFeatures =
@@ -45,20 +42,14 @@ namespace OrchardCore.Features.Services
                     .Any(sf => sf.Id == f.Id)));
         }
 
-        /// <summary>
-        /// Enables a list of features.
-        /// </summary>
-        /// <param name="featureIds">The IDs for the features to be enabled.</param>
+      
         public Task EnableFeaturesAsync(IEnumerable<string> featureIds)
         {
             return EnableFeaturesAsync(featureIds, false);
         }
 
-        /// <summary>
-        /// Enables a list of features.
-        /// </summary>
-        /// <param name="featureIds">The IDs for the features to be enabled.</param>
-        /// <param name="force">Boolean parameter indicating if the feature should enable it's dependencies if required or fail otherwise.</param>
+     
+  
         public async Task EnableFeaturesAsync(IEnumerable<string> featureIds, bool force)
         {
             var featuresToEnable = _extensionManager
@@ -72,20 +63,12 @@ namespace OrchardCore.Features.Services
             }
         }
 
-        /// <summary>
-        /// Disables a list of features.
-        /// </summary>
-        /// <param name="featureIds">The IDs for the features to be disabled.</param>
         public Task DisableFeaturesAsync(IEnumerable<string> featureIds)
         {
             return DisableFeaturesAsync(featureIds, false);
         }
 
-        /// <summary>
-        /// Disables a list of features.
-        /// </summary>
-        /// <param name="featureIds">The IDs for the features to be disabled.</param>
-        /// <param name="force">Boolean parameter indicating if the feature should disable the features which depend on it if required or fail otherwise.</param>
+
         public async Task DisableFeaturesAsync(IEnumerable<string> featureIds, bool force)
         {
             var featuresToDisable = _extensionManager
@@ -99,39 +82,6 @@ namespace OrchardCore.Features.Services
             }
         }
 
-        ///// <summary>
-        ///// Determines if a module was recently installed by using the project's last written time.
-        ///// </summary>
-        ///// <param name="extensionDescriptor">The extension descriptor.</param>
-        //public bool IsRecentlyInstalled(ExtensionDescriptor extensionDescriptor) {
-        //    DateTime lastWrittenUtc = _cacheManager.Get(extensionDescriptor, descriptor => {
-        //        string projectFile = GetManifestPath(extensionDescriptor);
-        //        if (!string.IsNullOrEmpty(projectFile)) {
-        //            // If project file was modified less than 24 hours ago, the module was recently deployed
-        //            return _virtualPathProvider.GetFileLastWriteTimeUtc(projectFile);
-        //        }
-
-        //        return DateTime.UtcNow;
-        //    });
-
-        //    return DateTime.UtcNow.Subtract(lastWrittenUtc) < new TimeSpan(1, 0, 0, 0);
-        //}
-
-        ///// <summary>
-        ///// Retrieves the full path of the manifest file for a module's extension descriptor.
-        ///// </summary>
-        ///// <param name="extensionDescriptor">The module's extension descriptor.</param>
-        ///// <returns>The full path to the module's manifest file.</returns>
-        //private string GetManifestPath(ExtensionDescriptor extensionDescriptor) {
-        //    string projectPath = _virtualPathProvider.Combine(extensionDescriptor.Location, extensionDescriptor.Id, "module.txt");
-
-        //    if (!_virtualPathProvider.FileExists(projectPath)) {
-        //        return null;
-        //    }
-
-        //    return projectPath;
-        //}
-
         private static ModuleFeature AssembleModuleFromDescriptor(IFeatureInfo featureInfo, bool isEnabled)
         {
             return new ModuleFeature
@@ -141,23 +91,5 @@ namespace OrchardCore.Features.Services
             };
         }
 
-        //private void GenerateWarning(string messageFormat, string featureName, IEnumerable<string> featuresInQuestion) {
-        //    if (featuresInQuestion.Count() < 1)
-        //        return;
-
-        //    Services.Notifier.Warning(T(
-        //        messageFormat,
-        //        featureName,
-        //        featuresInQuestion.Count() > 1
-        //            ? string.Join("",
-        //                          featuresInQuestion.Select(
-        //                              (fn, i) =>
-        //                              T(i == featuresInQuestion.Count() - 1
-        //                                    ? "{0}"
-        //                                    : (i == featuresInQuestion.Count() - 2
-        //                                           ? "{0} and "
-        //                                           : "{0}, "), fn).ToString()).ToArray())
-        //            : featuresInQuestion.First()));
-        //}
     }
 }
