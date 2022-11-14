@@ -15,21 +15,15 @@ namespace OrchardCore.ContentFields.Services
 {
     public class DefaultUserPickerResultProvider : IUserPickerResultProvider
     {
-        private readonly IContentManager _contentManager;
-        private readonly IRoleService _roleService;
         private readonly RoleManager<IRole> _roleManager;
         private readonly UserManager<IUser> _userManager;
         private readonly ISession _session;
 
         public DefaultUserPickerResultProvider(
-            IContentManager contentManager,
-            IRoleService roleService,
             RoleManager<IRole> roleManager,
             UserManager<IUser> userManager,
             ISession session)
         {
-            _contentManager = contentManager;
-            _roleService = roleService;
             _roleManager = roleManager;
             _userManager = userManager;
             _session = session;

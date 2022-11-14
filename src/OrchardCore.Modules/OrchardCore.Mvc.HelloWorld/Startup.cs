@@ -15,11 +15,11 @@ namespace OrchardCore.Mvc.HelloWorld
             _configuration = configuration;
         }
 
-        public override void Configure(IApplicationBuilder builder, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)
+        public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)
         {
             if (string.IsNullOrEmpty(_configuration["Sample"]))
             {
-                throw new Exception(":(");
+                throw new ArgumentNullException(" :( " + _configuration);
             }
 
             routes.MapAreaControllerRoute

@@ -95,14 +95,13 @@ namespace OrchardCore.Queries.Sql.GraphQL.Queries
             {
                 Name = fieldTypeName
             };
-
-            foreach (JProperty child in properties.Children())
+            foreach (var (name, nameLower, type, description) in from JProperty child in properties.Children()
+                                                                 let name = child.Name
+                                                                 let nameLower = name.Replace('.', '_')
+                                                                 let type = child.Value["type"].ToString()
+                                                                 let description = child.Value["description"]?.ToString()
+                                                                 select (name, nameLower, type, description))
             {
-                var name = child.Name;
-                var nameLower = name.Replace('.', '_');
-                var type = child.Value["type"].ToString();
-                var description = child.Value["description"]?.ToString();
-
                 if (type == "string")
                 {
                     var field = typetype.Field(

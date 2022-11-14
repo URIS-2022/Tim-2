@@ -1,6 +1,6 @@
 namespace OrchardCore.GitHub.Configuration
 {
-    public class GitHubDefaults
+    public static class GitHubDefaults
     {
         public const string AuthenticationScheme = "GitHub";
         public static readonly string DisplayName = "GitHub";
