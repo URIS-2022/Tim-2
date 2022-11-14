@@ -153,7 +153,7 @@ namespace OrchardCore.AdminDashboard.Controllers
                     return Forbid();
                 }
 
-                var partViewModel = parts.Where(m => m.ContentItemId == contentItem.ContentItemId).FirstOrDefault();
+                var partViewModel = parts.FirstOrDefault(m => m.ContentItemId == contentItem.ContentItemId);
 
                 dashboardPart.Position = partViewModel?.Position ?? 0;
                 dashboardPart.Width = partViewModel?.Width ?? 1;
@@ -165,7 +165,7 @@ namespace OrchardCore.AdminDashboard.Controllers
 
                 if (!contentItem.IsPublished())
                 {
-                    var publishedVersion = publishedItems.Where(p => p.ContentItemId == contentItem.ContentItemId).FirstOrDefault();
+                    var publishedVersion = publishedItems.FirstOrDefault(p => p.ContentItemId == contentItem.ContentItemId);
                     var publishedMetaData = publishedVersion?.As<DashboardPart>();
                     if (publishedVersion != null && publishedMetaData != null)
                     {
