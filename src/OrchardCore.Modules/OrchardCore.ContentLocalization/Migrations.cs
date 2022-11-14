@@ -77,7 +77,7 @@ namespace OrchardCore.ContentLocalization.Records
         }
 
         // Migrate null LocalizedContentItemIndex Latest column.
-        public int UpdateFrom3()
+        public static int UpdateFrom3()
         {
             // Defer this until after the subsequent migrations have succeded as the schema has changed.
             ShellScope.AddDeferredTask(async scope =>

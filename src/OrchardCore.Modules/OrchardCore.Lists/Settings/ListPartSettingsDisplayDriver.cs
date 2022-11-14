@@ -69,7 +69,7 @@ namespace OrchardCore.Lists.Settings
                 });
 
                 // Update order of existing content if enable ordering has been turned on
-                if (settings.EnableOrdering != model.EnableOrdering && model.EnableOrdering == true)
+                if (settings.EnableOrdering != model.EnableOrdering && model.EnableOrdering)
                 {
                     await _containerService.SetInitialOrder(contentTypePartDefinition.ContentTypeDefinition.Name);
                 }

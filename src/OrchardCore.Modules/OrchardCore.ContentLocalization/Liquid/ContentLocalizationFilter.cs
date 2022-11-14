@@ -15,28 +15,28 @@ namespace OrchardCore.ContentLocalization.Liquid
             _contentLocalizationManager = contentLocalizationManager;
         }
 
-        public async ValueTask<FluidValue> ProcessAsync(FluidValue input, FilterArguments arguments, LiquidTemplateContext ctx)
+        public async ValueTask<FluidValue> ProcessAsync(FluidValue input, FilterArguments arguments, LiquidTemplateContext context)
         {
             var locale = arguments.At(0).ToStringValue();
 
             if (arguments.At(0).IsNil())
             {
-                locale = ctx.CultureInfo.Name;
+                locale = context.CultureInfo.Name;
             }
 
             if (input.Type == FluidValues.Array)
             {
                 // List of content item ids
 
-                var localizationSets = input.Enumerate(ctx).Select(x => x.ToStringValue()).ToArray();
+                var localizationSets = input.Enumerate(context).Select(x => x.ToStringValue()).ToArray();
 
-                return FluidValue.Create(await _contentLocalizationManager.GetItemsForSetsAsync(localizationSets, locale), ctx.Options);
+                return FluidValue.Create(await _contentLocalizationManager.GetItemsForSetsAsync(localizationSets, locale), context.Options);
             }
             else
             {
                 var localizationSet = input.ToStringValue();
 
-                return FluidValue.Create(await _contentLocalizationManager.GetContentItemAsync(localizationSet, locale), ctx.Options);
+                return FluidValue.Create(await _contentLocalizationManager.GetContentItemAsync(localizationSet, locale), context.Options);
             }
         }
     }

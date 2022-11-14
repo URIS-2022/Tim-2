@@ -12,14 +12,14 @@ namespace OrchardCore.Queries.Sql
         private readonly string _schema;
 
         private StringBuilder _builder;
-        private IDictionary<string, object> _parameters;
-        private ISqlDialect _dialect;
-        private string _tablePrefix;
+        private readonly IDictionary<string, object> _parameters;
+        private readonly ISqlDialect _dialect;
+        private readonly string _tablePrefix;
         private HashSet<string> _tableAliases;
         private HashSet<string> _ctes;
-        private ParseTree _tree;
+        private readonly ParseTree _tree;
         private static LanguageData language = new LanguageData(new SqlGrammar());
-        private Stack<FormattingModes> _modes;
+        private readonly Stack<FormattingModes> _modes;
 
         private string _limit;
         private string _offset;
@@ -262,7 +262,7 @@ namespace OrchardCore.Queries.Sql
 
                 if (idList.ChildNodes[i].ChildNodes[1].ChildNodes.Count > 0)
                 {
-                    _builder.Append(" ").Append(idList.ChildNodes[i].ChildNodes[1].ChildNodes[0].Term.Name);
+                    _builder.Append(' ').Append(idList.ChildNodes[i].ChildNodes[1].ChildNodes[0].Term.Name);
                 }
             }
 
@@ -858,7 +858,7 @@ namespace OrchardCore.Queries.Sql
                 _builder.Append(")");
             }
 
-            _builder.Append(" ");
+            _builder.Append(' ');
 
             return _builder.ToString();
         }
