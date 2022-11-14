@@ -58,10 +58,8 @@ namespace OrchardCore.Media.Drivers
             return Initialize<EditMediaFieldViewModel>(GetEditorShapeType(context), model =>
             {
                 var settings = context.PartFieldDefinition.GetSettings<MediaFieldSettings>();
-                if (settings.AllowMediaText)
+                if (settings.AllowMediaText && field.MediaTexts != null)
                 {
-                    if (field.MediaTexts != null)
-                    {
                         for (var i = 0; i < itemPaths.Length; i++)
                         {
                             if (i >= 0 && i < field.MediaTexts.Length)
@@ -69,7 +67,7 @@ namespace OrchardCore.Media.Drivers
                                 itemPaths[i].MediaText = field.MediaTexts[i];
                             }
                         }
-                    }
+                   
                 }
 
                 if (settings.AllowAnchors)
