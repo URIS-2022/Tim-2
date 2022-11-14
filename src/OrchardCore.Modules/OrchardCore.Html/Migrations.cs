@@ -40,6 +40,11 @@ namespace OrchardCore.Html
         }
 
         // This code can be removed in a later version.
+        public int UpdateFrom2()
+        {
+            return 3;
+        }
+
         const int UpdateFrom1 = 2;
 
         // This code can be removed in a later version.
