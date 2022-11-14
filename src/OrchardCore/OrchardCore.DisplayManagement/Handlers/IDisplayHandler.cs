@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 namespace OrchardCore.DisplayManagement.Handlers
 {
-    public interface IDisplayHandler<TModel>
+    public interface IDisplayHandler<in TModel>
     {
         Task BuildDisplayAsync(TModel model, BuildDisplayContext context);
         Task BuildEditorAsync(TModel model, BuildEditorContext context);

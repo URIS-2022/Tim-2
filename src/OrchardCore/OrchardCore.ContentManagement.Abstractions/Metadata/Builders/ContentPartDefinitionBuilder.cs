@@ -44,15 +44,15 @@ namespace OrchardCore.ContentManagement.Metadata.Builders
         {
             if (!Name[0].IsLetter())
             {
-                throw new ArgumentException("Content part name must start with a letter", "name");
+                throw new ArgumentException("Content part name must start with a letter");
             }
             if (!String.Equals(Name, Name.ToSafeName(), StringComparison.OrdinalIgnoreCase))
             {
-                throw new ArgumentException("Content part name contains invalid characters", "name");
+                throw new ArgumentException("Content part name contains invalid characters");
             }
             if (Name.IsReservedContentName())
             {
-                throw new ArgumentException("Content part name is reserved for internal use", "name");
+                throw new ArgumentException("Content part name is reserved for internal use");
             }
 
             return new ContentPartDefinition(Name, _fields, _settings);
@@ -186,11 +186,11 @@ namespace OrchardCore.ContentManagement.Metadata.Builders
             {
                 if (!_fieldName[0].IsLetter())
                 {
-                    throw new ArgumentException("Content field name must start with a letter", "name");
+                    throw new ArgumentException("Content field name must start with a letter");
                 }
                 if (!String.Equals(_fieldName, _fieldName.ToSafeName(), StringComparison.OrdinalIgnoreCase))
                 {
-                    throw new ArgumentException("Content field name contains invalid characters", "name");
+                    throw new ArgumentException("Content field name contains invalid characters");
                 }
 
                 return new ContentPartFieldDefinition(_fieldDefinition, _fieldName, _settings);

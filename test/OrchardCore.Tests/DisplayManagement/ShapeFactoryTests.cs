@@ -86,7 +86,7 @@ namespace OrchardCore.Tests.DisplayManagement
             {
                 (ctx) =>
                 {
-                    ctx.Create = () => new SubShape();
+                    ctx.SetCreate = () => new SubShape();
                     return Task.CompletedTask;
                 }
             };
@@ -106,7 +106,7 @@ namespace OrchardCore.Tests.DisplayManagement
             {
                 (ctx) =>
                 {
-                    ctx.Create = () => new SubShape();
+                    ctx.SetCreate = () => new SubShape();
                     return Task.CompletedTask;
                 }
             };

@@ -5,7 +5,7 @@ namespace OrchardCore.Logging
 {
     public static class ApplicationBuilderExtensions
     {
-        [Obsolete]
+        [Obsolete("Replaced by the automatic starter!")]
         public static IApplicationBuilder UseSerilogTenantNameLoggingMiddleware(this IApplicationBuilder builder)
         {
             return builder.UseMiddleware<SerilogTenantNameLoggingMiddleware>();

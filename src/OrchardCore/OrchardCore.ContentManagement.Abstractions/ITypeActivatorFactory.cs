@@ -13,7 +13,7 @@ namespace OrchardCore.ContentManagement
     /// <summary>
     /// Represents the type information for a content element.
     /// </summary>
-    public interface ITypeActivator<TInstance>
+    public interface ITypeActivator<out TInstance>
     {
         /// <summary>
         /// The <see cref="Type"/> of the content element represented by the activator.

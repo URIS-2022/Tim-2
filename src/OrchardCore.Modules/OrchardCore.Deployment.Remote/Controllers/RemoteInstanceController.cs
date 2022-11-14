@@ -65,7 +65,7 @@ namespace OrchardCore.Deployment.Remote.Controllers
                 remoteInstances = remoteInstances.Where(x => x.Name.Contains(options.Search, StringComparison.OrdinalIgnoreCase)).ToList();
             }
 
-            var count = remoteInstances.Count();
+            var count = remoteInstances.Count;
 
             var startIndex = pager.GetStartIndex();
             var pageSize = pager.PageSize;

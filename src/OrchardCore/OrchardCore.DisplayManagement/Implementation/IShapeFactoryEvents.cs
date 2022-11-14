@@ -19,7 +19,7 @@ namespace OrchardCore.DisplayManagement.Implementation
         public Func<ValueTask<IShape>> CreateAsync { get; set; }
         public IList<Func<ShapeCreatedContext, Task>> OnCreated { get; set; }
 
-        public Func<IShape> Create
+        public Func<IShape> SetCreate
         {
             set => CreateAsync = () => new ValueTask<IShape>(value());
         }
