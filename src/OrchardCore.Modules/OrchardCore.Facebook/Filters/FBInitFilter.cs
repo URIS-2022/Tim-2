@@ -29,15 +29,12 @@ namespace OrchardCore.Facebook.Filters
             if ((context.Result is ViewResult || context.Result is PageResult) &&
                 !AdminAttribute.IsApplied(context.HttpContext))
             {
-                var site = (await _siteService.GetSiteSettingsAsync());
+                var site = await _siteService.GetSiteSettingsAsync();
                 var settings = site.As<FacebookSettings>();
-                if (!string.IsNullOrWhiteSpace(settings?.AppId))
+                if (!System.String.IsNullOrWhiteSpace(settings?.AppId) && settings.FBInit)
                 {
-                    if (settings.FBInit)
-                    {
-                        var setting = _resourceManager.RegisterResource("script", "fb");
-                        setting.AtLocation(ResourceLocation.Foot);
-                    }
+                    var setting = _resourceManager.RegisterResource("script", "fb");
+                    setting.AtLocation(ResourceLocation.Foot);
                 }
             }
             await next.Invoke();

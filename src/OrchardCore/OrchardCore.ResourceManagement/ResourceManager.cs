@@ -761,6 +761,11 @@ namespace OrchardCore.ResourceManagement
             }
 
             public override string ToString() => "(" + Type + ", " + Name + ")";
+
+            public override bool Equals(object obj)
+            {
+                return obj is ResourceTypeName && Equals((ResourceTypeName)obj);
+            }
         }
 
         private string GetResourceKey(string releasePath, string debugPath)
