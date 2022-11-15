@@ -28,13 +28,13 @@ namespace OrchardCore.ContentFields.Drivers
             S = localizer;
         }
 
-        public override IDisplayResult Display(ContentPickerField field, BuildFieldDisplayContext context)
+        public override IDisplayResult Display(ContentPickerField field, BuildFieldDisplayContext fieldDisplaycontext)
         {
-            return Initialize<DisplayContentPickerFieldViewModel>(GetDisplayShapeType(context), model =>
+            return Initialize<DisplayContentPickerFieldViewModel>(GetDisplayShapeType(fieldDisplaycontext), model =>
             {
                 model.Field = field;
-                model.Part = context.ContentPart;
-                model.PartFieldDefinition = context.PartFieldDefinition;
+                model.Part = fieldDisplaycontext.ContentPart;
+                model.PartFieldDefinition = fieldDisplaycontext.PartFieldDefinition;
             })
             .Location("Detail", "Content")
             .Location("Summary", "Content");

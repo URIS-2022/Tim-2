@@ -218,7 +218,6 @@ namespace OrchardCore.AuditTrail.Services
                         }
                     }
 
-                    throw new ParseException("Could not parse date", context.Scanner.Cursor.Position);
 
                 });
 
