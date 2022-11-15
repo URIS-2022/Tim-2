@@ -21,13 +21,13 @@ namespace OrchardCore.ContentFields.Drivers
             S = localizer;
         }
 
-        public override IDisplayResult Display(DateField field, BuildFieldDisplayContext context)
+        public override IDisplayResult Display(DateField field, BuildFieldDisplayContext fieldDisplayContext)
         {
-            return Initialize<DisplayDateFieldViewModel>(GetDisplayShapeType(context), model =>
+            return Initialize<DisplayDateFieldViewModel>(GetDisplayShapeType(fieldDisplayContext), model =>
             {
                 model.Field = field;
-                model.Part = context.ContentPart;
-                model.PartFieldDefinition = context.PartFieldDefinition;
+                model.Part = fieldDisplayContext.ContentPart;
+                model.PartFieldDefinition = fieldDisplayContext.PartFieldDefinition;
             })
             .Location("Detail", "Content")
             .Location("Summary", "Content");

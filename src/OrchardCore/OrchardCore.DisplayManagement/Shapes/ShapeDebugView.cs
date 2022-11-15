@@ -37,10 +37,9 @@ namespace OrchardCore.DisplayManagement.Shapes
         {
             public KeyValuePairs(string key, object value)
             {
-                if (_value is IShape)
-                {
-                    _shapeType = ((IShape)_value).Metadata.Type;
-                }
+
+                if (_value != null && _value is IShape)
+                    _shapeType = (_value as IShape).Metadata.Type;
 
                 _value = value;
                 _key = key;

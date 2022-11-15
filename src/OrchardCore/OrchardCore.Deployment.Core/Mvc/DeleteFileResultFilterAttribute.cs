@@ -1,10 +1,10 @@
-﻿using System.IO;
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace OrchardCore.Deployment.Core.Mvc
 {
-    public class DeleteFileResultFilter : ResultFilterAttribute
+    public class DeleteFileResultFilterAttribute : ResultFilterAttribute
     {
         public override void OnResultExecuted(ResultExecutedContext context)
         {

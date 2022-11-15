@@ -35,6 +35,8 @@ namespace OrchardCore.BackgroundTasks.Services
         public void Dispose()
         {
             throw new NotSupportedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

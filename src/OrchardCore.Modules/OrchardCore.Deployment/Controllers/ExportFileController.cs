@@ -33,7 +33,7 @@ namespace OrchardCore.Deployment.Controllers
         }
 
         [HttpPost]
-        [DeleteFileResultFilter]
+        [DeleteFileResultFilterAttribute]
         public async Task<IActionResult> Execute(int id)
         {
             if (!await _authorizationService.AuthorizeAsync(User, Permissions.Export))
