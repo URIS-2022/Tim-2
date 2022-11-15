@@ -39,21 +39,18 @@ namespace OrchardCore.Facebook
                         d.getElementsByTagName('head')[0].appendChild(js);
                     }} (document));";
                 }
-                else if (Path.GetFileName(httpContext.Request.Path.Value) == "fb.js")
+                else if (Path.GetFileName(httpContext.Request.Path.Value) == "fb.js" && !string.IsNullOrWhiteSpace(settings?.AppId))
                 {
-                    if (!string.IsNullOrWhiteSpace(settings?.AppId))
+                    var options = $"{{ appId:'{settings.AppId}',version:'{settings.Version}'";
+                    if (string.IsNullOrWhiteSpace(settings.FBInitParams))
                     {
-                        var options = $"{{ appId:'{settings.AppId}',version:'{settings.Version}'";
-                        if (string.IsNullOrWhiteSpace(settings.FBInitParams))
-                        {
-                            options = string.Concat(options, "}");
-                        }
-                        else
-                        {
-                            options = string.Concat(options, ",", settings.FBInitParams, "}");
-                        }
-                        script = $"window.fbAsyncInit = function(){{ FB.init({options});}};";
+                        options = string.Concat(options, "}");
                     }
+                    else
+                    {
+                        options = string.Concat(options, ",", settings.FBInitParams, "}");
+                    }
+                    script = $"window.fbAsyncInit = function(){{ FB.init({options});}};";
                 }
 
                 if (script != null)
