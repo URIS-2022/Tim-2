@@ -505,12 +505,9 @@ namespace OrchardCore.Navigation
         [Shape]
         public IHtmlContent ActionLink(Shape shape, IUrlHelper Url, object Value, bool Disabled = false)
         {
-            if (Disabled)
+            if (Disabled && shape.TryGetProperty("Tag", out TagBuilder tagBuilder))
             {
-                if (shape.TryGetProperty("Tag", out TagBuilder tagBuilder))
-                {
-                    tagBuilder.AddCssClass("disabled");
-                }
+               tagBuilder.AddCssClass("disabled");  
             }
 
             var routeValues = shape.GetProperty<RouteValueDictionary>("RouteValues") ?? new RouteValueDictionary();

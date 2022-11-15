@@ -8,7 +8,7 @@ namespace OrchardCore.MiniProfiler
 {
     public class ShapeStep : IShapeDisplayEvents
     {
-        private Dictionary<object, IDisposable> _timings = new Dictionary<object, IDisposable>();
+        private readonly Dictionary<object, IDisposable> _timings = new Dictionary<object, IDisposable>();
 
         public Task DisplayedAsync(ShapeDisplayContext context)
         {
@@ -30,13 +30,7 @@ namespace OrchardCore.MiniProfiler
 
         public Task DisplayingFinalizedAsync(ShapeDisplayContext context)
         {
-            if (_timings.TryGetValue(context, out var timing))
-            {
-                _timings.Remove(context);
-                timing.Dispose();
-            }
-
-            return Task.CompletedTask;
+           return DisplayedAsync(context);
         }
     }
 }

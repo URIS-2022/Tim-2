@@ -15,7 +15,7 @@ namespace OrchardCore.Search.Lucene.Services
             _luceneIndexManager = luceneIndexManager;
         }
 
-        public async Task<IList<string>> ExecuteQueryAsync(Query query, string indexName, int start, int end)
+        public async Task<IList<string>> ExecuteQueryAsync(Query query, string indexName, int start = 0, int end = 0)
         {
             var contentItemIds = new List<string>();
 

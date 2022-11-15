@@ -264,7 +264,6 @@ namespace OrchardCore.OpenId.Services
                     }
                     catch (CryptographicException)
                     {
-                        continue;
                     }
                 }
             }
