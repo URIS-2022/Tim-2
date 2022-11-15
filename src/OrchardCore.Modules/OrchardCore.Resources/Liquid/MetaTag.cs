@@ -10,7 +10,7 @@ using OrchardCore.ResourceManagement;
 
 namespace OrchardCore.Resources.Liquid
 {
-    public class MetaTag
+    public static class MetaTag
     {
         public static async ValueTask<Completion> WriteToAsync(List<FilterArgument> argumentsList, TextWriter writer, TextEncoder encoder, TemplateContext context)
         {

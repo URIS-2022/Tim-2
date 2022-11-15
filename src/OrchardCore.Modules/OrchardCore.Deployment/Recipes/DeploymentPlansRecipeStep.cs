@@ -76,9 +76,9 @@ namespace OrchardCore.Deployment.Recipes
         
         private class DeploymentStepModel
         {
-            public string Type { get; set; }
+            public string Type { get; }
 
-            public JObject Step { get; set; }
+            public JObject Step { get; }
         }
     }
 }
