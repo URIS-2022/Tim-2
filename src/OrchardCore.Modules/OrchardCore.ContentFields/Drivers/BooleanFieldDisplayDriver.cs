@@ -11,13 +11,13 @@ namespace OrchardCore.ContentFields.Drivers
 {
     public class BooleanFieldDisplayDriver : ContentFieldDisplayDriver<BooleanField>
     {
-        public override IDisplayResult Display(BooleanField field, BuildFieldDisplayContext context)
+        public override IDisplayResult Display(BooleanField field, BuildFieldDisplayContext fieldDisplayContext)
         {
-            return Initialize<DisplayBooleanFieldViewModel>(GetDisplayShapeType(context), model =>
+            return Initialize<DisplayBooleanFieldViewModel>(GetDisplayShapeType(fieldDisplayContext), model =>
             {
                 model.Field = field;
-                model.Part = context.ContentPart;
-                model.PartFieldDefinition = context.PartFieldDefinition;
+                model.Part = fieldDisplayContext.ContentPart;
+                model.PartFieldDefinition = fieldDisplayContext.PartFieldDefinition;
             })
             .Location("Detail", "Content")
             .Location("Summary", "Content");

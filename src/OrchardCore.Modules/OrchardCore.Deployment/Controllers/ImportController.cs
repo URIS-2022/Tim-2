@@ -60,7 +60,7 @@ namespace OrchardCore.Deployment.Controllers
 
             if (importedPackage != null)
             {
-                var tempArchiveName = Path.GetTempFileName() + Path.GetExtension(importedPackage.FileName);
+                var tempArchiveName = Path.GetRandomFileName() + Path.GetExtension(importedPackage.FileName);
                 var tempArchiveFolder = PathExtensions.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
                 try

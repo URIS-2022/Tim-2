@@ -93,7 +93,6 @@ namespace OrchardCore.Indexing.Services
 
             var session = serviceProvider.GetService<YesSql.ISession>();
             var dbConnectionAccessor = serviceProvider.GetService<IDbConnectionAccessor>();
-            var shellSettings = serviceProvider.GetService<ShellSettings>();
             var logger = serviceProvider.GetService<ILogger<IndexingTaskManager>>();
 
             var contentItemIds = new HashSet<string>();

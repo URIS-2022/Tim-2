@@ -52,7 +52,6 @@ namespace OrchardCore.Email.Workflows.Activities
             set => SetProperty(value);
         }
 
-        // TODO: Add support for the following format: Jack Bauer<jack@ctu.com>, ...
         public WorkflowExpression<string> Recipients
         {
             get => GetProperty(() => new WorkflowExpression<string>());

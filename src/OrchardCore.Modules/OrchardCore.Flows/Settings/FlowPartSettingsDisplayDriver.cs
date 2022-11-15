@@ -15,14 +15,14 @@ namespace OrchardCore.Flows.Settings
     public class FlowPartSettingsDisplayDriver : ContentTypePartDefinitionDisplayDriver<FlowPart>
     {
         private readonly IContentDefinitionManager _contentDefinitionManager;
-        private readonly IStringLocalizer S;
+        private readonly IStringLocalizer _s;
 
         public FlowPartSettingsDisplayDriver(
             IContentDefinitionManager contentDefinitionManager,
             IStringLocalizer<FlowPartSettingsDisplayDriver> localizer)
         {
             _contentDefinitionManager = contentDefinitionManager;
-            S = localizer;
+            _s = localizer;
         }
 
         public override IDisplayResult Edit(ContentTypePartDefinition contentTypePartDefinition, IUpdateModel updater)

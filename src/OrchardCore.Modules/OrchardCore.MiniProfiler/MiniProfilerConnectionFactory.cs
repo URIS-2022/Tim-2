@@ -8,7 +8,6 @@ namespace OrchardCore.MiniProfiler
     internal class MiniProfilerConnectionFactory : IConnectionFactory
     {
         private readonly IConnectionFactory _factory;
-        private readonly static string ConnectionName = nameof(ProfiledDbConnection).ToLower();
 
         public Type DbConnectionType => typeof(ProfiledDbConnection);
 

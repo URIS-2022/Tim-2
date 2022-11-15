@@ -53,7 +53,7 @@ namespace OrchardCore.Lists.AdminNodes
                 treeNode.IconForContentItems = model.IconForContentItems;
                 treeNode.AddContentTypeAsParent = model.AddContentTypeAsParent;
                 treeNode.IconForParentLink = model.IconForParentLink;
-            };
+            }
 
             return Edit(treeNode);
         }

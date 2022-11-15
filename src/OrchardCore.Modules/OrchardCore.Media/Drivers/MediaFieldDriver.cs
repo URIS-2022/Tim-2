@@ -53,15 +53,13 @@ namespace OrchardCore.Media.Drivers
 
         public override IDisplayResult Edit(MediaField field, BuildFieldEditorContext context)
         {
-            var itemPaths = field.Paths?.ToList().Select(p => new EditMediaFieldItemInfo { Path = p }).ToArray() ?? Array.Empty<EditMediaFieldItemInfo>();
+            var itemPaths = field.Paths?.Select(p => new EditMediaFieldItemInfo { Path = p }).ToArray() ?? Array.Empty<EditMediaFieldItemInfo>();
 
             return Initialize<EditMediaFieldViewModel>(GetEditorShapeType(context), model =>
             {
                 var settings = context.PartFieldDefinition.GetSettings<MediaFieldSettings>();
-                if (settings.AllowMediaText)
+                if (settings.AllowMediaText && field.MediaTexts != null)
                 {
-                    if (field.MediaTexts != null)
-                    {
                         for (var i = 0; i < itemPaths.Length; i++)
                         {
                             if (i >= 0 && i < field.MediaTexts.Length)
@@ -69,7 +67,7 @@ namespace OrchardCore.Media.Drivers
                                 itemPaths[i].MediaText = field.MediaTexts[i];
                             }
                         }
-                    }
+                   
                 }
 
                 if (settings.AllowAnchors)
