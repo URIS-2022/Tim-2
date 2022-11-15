@@ -37,16 +37,14 @@ namespace OrchardCore.Markdown
         // This code can be removed in a later version.
         public int UpdateFrom2()
         {
+            foreach (var contentType in _contentDefinitionManager.LoadTypeDefinitions().Where(contentType => contentType.Parts.Any(x => x.PartDefinition.Name == "MarkdownBodyPart"))
             // For backwards compatability with liquid filters we disable html sanitization on existing field definitions.
-            foreach (var contentType in _contentDefinitionManager.LoadTypeDefinitions())
+            )
             {
-                if (contentType.Parts.Any(x => x.PartDefinition.Name == "MarkdownBodyPart"))
-                {
-                    _contentDefinitionManager.AlterTypeDefinition(contentType.Name, x => x.WithPart("MarkdownBodyPart", part =>
-                    {
-                        part.MergeSettings<MarkdownBodyPartSettings>(x => x.SanitizeHtml = false);
-                    }));
-                }
+                _contentDefinitionManager.AlterTypeDefinition(contentType.Name, x => x.WithPart("MarkdownBodyPart", part =>
+                                {
+                                    part.MergeSettings<MarkdownBodyPartSettings>(x => x.SanitizeHtml = false);
+                                }));
             }
 
             return 3;
@@ -57,21 +55,18 @@ namespace OrchardCore.Markdown
         {
             // For backwards compatability with liquid filters we disable html sanitization on existing field definitions.
             var partDefinitions = _contentDefinitionManager.LoadPartDefinitions();
-            foreach (var partDefinition in partDefinitions)
+            foreach (var partDefinition in partDefinitions.Where(partDefinition => partDefinition.Fields.Any(x => x.FieldDefinition.Name == "MarkdownField")))
             {
-                if (partDefinition.Fields.Any(x => x.FieldDefinition.Name == "MarkdownField"))
-                {
-                    _contentDefinitionManager.AlterPartDefinition(partDefinition.Name, partBuilder =>
-                    {
-                        foreach (var fieldDefinition in partDefinition.Fields.Where(x => x.FieldDefinition.Name == "MarkdownField"))
-                        {
-                            partBuilder.WithField(fieldDefinition.Name, fieldBuilder =>
-                            {
-                                fieldBuilder.MergeSettings<MarkdownFieldSettings>(s => s.SanitizeHtml = false);
-                            });
-                        }
-                    });
-                }
+                _contentDefinitionManager.AlterPartDefinition(partDefinition.Name, partBuilder =>
+                                {
+                                    foreach (var fieldDefinition in partDefinition.Fields.Where(x => x.FieldDefinition.Name == "MarkdownField"))
+                                    {
+                                        partBuilder.WithField(fieldDefinition.Name, fieldBuilder =>
+                                        {
+                                            fieldBuilder.MergeSettings<MarkdownFieldSettings>(s => s.SanitizeHtml = false);
+                                        });
+                                    }
+                                });
             }
 
             return 4;

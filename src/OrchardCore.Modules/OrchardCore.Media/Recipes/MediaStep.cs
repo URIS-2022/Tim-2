@@ -93,7 +93,7 @@ namespace OrchardCore.Media.Recipes
             public MediaStepFile[] Files { get; set; }
         }
 
-        private class MediaStepFile
+        private sealed class MediaStepFile
         {
             /// <summary>
             /// Path where the content will be written.
@@ -113,7 +113,7 @@ namespace OrchardCore.Media.Recipes
             /// If both this and SourcePath properties are set with
             /// non-null values, this property will be used.
             /// </summary>
-            public string Base64 { get; set; }
+            public string Base64 { get; }
 
             /// <summary>
             /// Path where the content is read from. Use when the file
@@ -121,7 +121,7 @@ namespace OrchardCore.Media.Recipes
             /// If both this and Base64 properties are set with
             /// non-null values, the Base64 property will be used.
             /// </summary>
-            public string SourcePath { get; set; }
+            public string SourcePath { get;  }
 
             /// <summary>
             /// URL where the content is read from. Use when the file
@@ -129,7 +129,7 @@ namespace OrchardCore.Media.Recipes
             /// If Base64 property or SourcePath property are set, they take
             /// precedence over SourceUrl.
             /// </summary>
-            public string SourceUrl { get; set; }
+            public string SourceUrl { get;  }
         }
     }
 }

@@ -9,7 +9,6 @@ namespace OrchardCore.Facebook
 {
     public class AdminMenu : INavigationProvider
     {
-        private readonly ShellDescriptor _shellDescriptor;
         private readonly IStringLocalizer S;
 
         public AdminMenu(
@@ -17,7 +16,6 @@ namespace OrchardCore.Facebook
             ShellDescriptor shellDescriptor)
         {
             S = localizer;
-            _shellDescriptor = shellDescriptor;
         }
 
         public Task BuildNavigationAsync(string name, NavigationBuilder builder)
@@ -41,7 +39,6 @@ namespace OrchardCore.Facebook
     [Feature(FacebookConstants.Features.Login)]
     public class AdminMenuLogin : INavigationProvider
     {
-        private readonly ShellDescriptor _shellDescriptor;
         private readonly IStringLocalizer S;
 
         public AdminMenuLogin(
@@ -49,7 +46,6 @@ namespace OrchardCore.Facebook
             ShellDescriptor shellDescriptor)
         {
             S = localizer;
-            _shellDescriptor = shellDescriptor;
         }
 
         public Task BuildNavigationAsync(string name, NavigationBuilder builder)

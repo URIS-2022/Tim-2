@@ -330,8 +330,6 @@ namespace OrchardCore.ContentTypes.Services
             {
                 throw new ArgumentException(nameof(fieldName));
             }
-
-            var partDefinition = _contentDefinitionManager.LoadPartDefinition(partName);
             var typeDefinition = _contentDefinitionManager.LoadTypeDefinition(partName);
 
             // If the type exists ensure it has its own part

@@ -165,12 +165,9 @@ namespace OrchardCore.AuditTrail.Services
             }
 
             var address = _httpContextAccessor.HttpContext?.Connection?.RemoteIpAddress;
-            if (address != null)
+            if (address != null && IPAddress.IsLoopback(address))
             {
-                if (IPAddress.IsLoopback(address))
-                {
-                    address = IPAddress.Loopback;
-                }
+                address = IPAddress.Loopback;
             }
 
             return address?.ToString();

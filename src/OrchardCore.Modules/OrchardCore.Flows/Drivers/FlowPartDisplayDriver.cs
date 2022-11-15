@@ -117,8 +117,6 @@ namespace OrchardCore.Flows.Drivers
 
                 contentItem.Weld(new FlowMetadata());
 
-                var widgetModel = await contentItemDisplayManager.UpdateEditorAsync(contentItem, context.Updater, context.IsNew, htmlFieldPrefix: model.Prefixes[i]);
-
                 contentItems.Add(contentItem);
             }
 
