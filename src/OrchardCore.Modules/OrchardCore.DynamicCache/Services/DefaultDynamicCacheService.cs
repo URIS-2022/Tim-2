@@ -18,7 +18,14 @@ namespace OrchardCore.DynamicCache.Services
     public class DefaultDynamicCacheService : IDynamicCacheService
     {
         public const string FailoverKey = "OrchardCore_DynamicCache_FailoverKey";
-        public static TimeSpan DefaultFailoverRetryLatency = TimeSpan.FromSeconds(30);
+       // public static TimeSpan DefaultFailoverRetryLatency = TimeSpan.FromSeconds(30);
+        private static TimeSpan DefaultFailoverRetryLatency = TimeSpan.FromSeconds(30);
+        public TimeSpan FailoverRetryLatency
+        {
+            get { return DefaultFailoverRetryLatency; }
+            set { DefaultFailoverRetryLatency = value; }
+        }
+
 
         private readonly PoolingJsonSerializer _serializer;
         private readonly ICacheContextManager _cacheContextManager;

@@ -90,7 +90,7 @@ namespace OrchardCore.Menu.Drivers
         /// <summary>
         /// Clone the content items at the specific index.
         /// </summary>
-        private JObject GetMenuItemAt(MenuItemsListPart menuItems, int[] indexes)
+        private static JObject GetMenuItemAt(MenuItemsListPart menuItems, int[] indexes)
         {
             ContentItem menuItem = null;
 

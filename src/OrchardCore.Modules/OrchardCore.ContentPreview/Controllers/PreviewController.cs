@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -76,9 +77,6 @@ namespace OrchardCore.ContentPreview.Controllers
             contentItem.PublishedUtc = _clock.UtcNow;
             contentItem.Published = true;
 
-            // TODO: we should probably get this value from the main editor as it might impact validators
-            var model = await _contentItemDisplayManager.UpdateEditorAsync(contentItem, _updateModelAccessor.ModelUpdater, true);
-
             if (!ModelState.IsValid)
             {
                 var errors = new List<string>();
@@ -112,7 +110,7 @@ namespace OrchardCore.ContentPreview.Controllers
                 return Ok();
             }
 
-            model = await _contentItemDisplayManager.BuildDisplayAsync(contentItem, _updateModelAccessor.ModelUpdater, "Detail");
+            var model = await _contentItemDisplayManager.BuildDisplayAsync(contentItem, _updateModelAccessor.ModelUpdater, "Detail");
 
             return View(model);
         }
@@ -176,12 +174,9 @@ namespace OrchardCore.ContentPreview.Controllers
                 if (entries.Count < modelStateDictionary.Count)
                 {
                     // Account for entries in the ModelStateDictionary that do not have corresponding ModelMetadata values.
-                    foreach (var entry in modelStateDictionary)
+                    foreach (var entry in modelStateDictionary.Select(entry => entry.Value))
                     {
-                        if (!entries.Contains(entry.Value))
-                        {
-                            entries.Add(entry.Value);
-                        }
+                        entries.Add(entry);
                     }
                 }
 

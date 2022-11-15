@@ -14,7 +14,6 @@ namespace OrchardCore.AdminMenu.AdminNodes
         private readonly ILogger _logger;
         private readonly IAdminMenuPermissionService _adminMenuPermissionService;
 
-
         public LinkAdminNodeNavigationBuilder(IAdminMenuPermissionService adminMenuPermissionService, ILogger<LinkAdminNodeNavigationBuilder> logger)
         {
             _adminMenuPermissionService = adminMenuPermissionService;
@@ -23,9 +22,9 @@ namespace OrchardCore.AdminMenu.AdminNodes
 
         public string Name => typeof(LinkAdminNode).Name;
 
-        public Task BuildNavigationAsync(MenuItem menuItem, NavigationBuilder builder, IEnumerable<IAdminNodeNavigationBuilder> treeNodeBuilders)
+        public Task BuildNavigationAsync(MenuItem treeNode, NavigationBuilder builder, IEnumerable<IAdminNodeNavigationBuilder> treeNodeBuilders)
         {
-            var node = menuItem as LinkAdminNode;
+            var node = treeNode as LinkAdminNode;
 
             if (node == null || String.IsNullOrEmpty(node.LinkText) || !node.Enabled)
             {
@@ -52,8 +51,7 @@ namespace OrchardCore.AdminMenu.AdminNodes
                 node.IconClass?.Split(' ').ToList().ForEach(c => itemBuilder.AddClass("icon-class-" + c));
 
                 // Let children build themselves inside this MenuItem
-                // todo: this logic can be shared by all TreeNodeNavigationBuilders
-                foreach (var childTreeNode in menuItem.Items)
+                foreach (var childTreeNode in treeNode.Items)
                 {
                     try
                     {
@@ -67,7 +65,7 @@ namespace OrchardCore.AdminMenu.AdminNodes
                 }
             });
         }
-
+        
         // Add adminNode's IconClass property values to menuItem.Classes.
         // Add them with a prefix so that later the shape template can extract them to use them on a <i> tag.
         private static void AddIconPickerClassToLink(string iconClass, NavigationItemBuilder itemBuilder)

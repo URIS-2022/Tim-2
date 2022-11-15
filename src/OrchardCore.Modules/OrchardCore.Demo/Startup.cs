@@ -116,9 +116,6 @@ namespace OrchardCore.Demo
 
                 // Add a custom page route
                 options.Conventions.AddAreaPageRoute("OrchardCore.Demo", "/Hello", "Hello");
-
-                // This declaration would define an home page
-                //options.Conventions.AddAreaPageRoute("OrchardCore.Demo", "/Hello", "");
             });
 
             services.AddTagHelpers(typeof(BazTagHelper).Assembly);

@@ -54,13 +54,13 @@ namespace OrchardCore.Recipes.RecipeSteps
 
         private class InternalStep
         {
-            public InternalStepValue[] Values { get; set; }
+            public InternalStepValue[] Values { get; }
         }
 
         private class InternalStepValue
         {
-            public string ExecutionId { get; set; }
-            public string Name { get; set; }
+            public string ExecutionId { get; }
+            public string Name { get; }
         }
     }
 }

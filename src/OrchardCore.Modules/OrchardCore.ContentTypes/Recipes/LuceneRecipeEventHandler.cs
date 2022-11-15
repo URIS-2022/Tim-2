@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using OrchardCore.ContentManagement.Metadata.Records;
@@ -30,18 +31,18 @@ namespace OrchardCore.ContentTypes
 
                 foreach (var contentType in step.ContentTypes)
                 {
-                    foreach (var partDefinition in contentType.ContentTypePartDefinitionRecords)
+                    foreach (var partDefinition in contentType.ContentTypePartDefinitionRecords.Select(partDefinition => partDefinition.Settings))
                     {
-                        if (partDefinition.Settings != null)
-                        {
-                            if (partDefinition.Settings.TryGetValue("ContentIndexSettings", out var existingPartSettings) &&
-                                !partDefinition.Settings.ContainsKey("LuceneContentIndexSettings"))
+                       // if (partDefinition.Settings != null)
+                        //{
+                            if (partDefinition.TryGetValue("ContentIndexSettings", out var existingPartSettings) &&
+                                !partDefinition.ContainsKey("LuceneContentIndexSettings"))
                             {
-                                partDefinition.Settings.Add(new JProperty("LuceneContentIndexSettings", existingPartSettings));
+                                partDefinition.Add(new JProperty("LuceneContentIndexSettings", existingPartSettings));
                             }
 
-                            partDefinition.Settings.Remove("ContentIndexSettings");
-                        }
+                            partDefinition.Remove("ContentIndexSettings");
+                        //}
                     }
                 }
 
@@ -81,7 +82,6 @@ namespace OrchardCore.ContentTypes
 
         private sealed class ContentDefinitionStepModel
         {
-            public string Name { get; set; }
             public ContentTypeDefinitionRecord[] ContentTypes { get; set; } = Array.Empty<ContentTypeDefinitionRecord>();
             public ContentPartDefinitionRecord[] ContentParts { get; set; } = Array.Empty<ContentPartDefinitionRecord>();
         }

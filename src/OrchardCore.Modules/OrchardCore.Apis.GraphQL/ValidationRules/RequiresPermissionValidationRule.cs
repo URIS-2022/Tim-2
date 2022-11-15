@@ -22,10 +22,10 @@ namespace OrchardCore.Apis.GraphQL.ValidationRules
             S = s;
         }
 
-        public async Task<INodeVisitor> ValidateAsync(ValidationContext validationContext)
+        public async Task<INodeVisitor> ValidateAsync(ValidationContext context)
         {
             // shouldn't we access UserContext from validationcontext inside MatchingNodeVisitor actions?
-            var userContext = (GraphQLUserContext)validationContext.UserContext;
+            var userContext = (GraphQLUserContext)context.UserContext;
 
             return await Task.FromResult(new NodeVisitors(
                 new MatchingNodeVisitor<Operation>(async (astType, validationContext) =>
@@ -47,10 +47,7 @@ namespace OrchardCore.Apis.GraphQL.ValidationRules
                     if (fieldDef == null)
                         return;
 
-                    // check target field
                     await AuthorizeNodePermissionAsync(fieldAst, fieldDef, validationContext, userContext);
-                    // check returned graph type
-                    //   AuthorizeNodePermissionAsync(fieldAst, fieldDef.ResolvedType.GetNamedType(), validationContext, userContext).GetAwaiter().GetResult(); // TODO: need to think of something to avoid this
                 })
             ));
         }

@@ -40,16 +40,16 @@ namespace OrchardCore.Html
         }
 
         // This code can be removed in a later version.
-        public int UpdateFrom1()
-        {
-            return 2;
-        }
-
-        // This code can be removed in a later version.
         public int UpdateFrom2()
         {
             return 3;
         }
+
+        const int UpdateFrom1 = 2;
+
+        // This code can be removed in a later version.
+        
+        const int UpdateFrom2 = 3;
 
         // This code can be removed in a later version.
         public async Task<int> UpdateFrom3()
@@ -70,7 +70,7 @@ namespace OrchardCore.Html
 
             var lastDocumentId = 0;
 
-            for (; ; )
+            while(true)
             {
                 var contentItemVersions = await _session.Query<ContentItem, ContentItemIndex>(x => x.DocumentId > lastDocumentId).Take(10).ListAsync();
 

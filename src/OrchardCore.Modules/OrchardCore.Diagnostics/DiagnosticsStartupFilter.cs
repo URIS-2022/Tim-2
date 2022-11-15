@@ -29,19 +29,17 @@ namespace OrchardCore.Diagnostics
 
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
-                app.Use(async (context, next) =>
+                _ = app.Use(async (context, next) =>
                 {
                     await next();
 
-                    if (context.Response.StatusCode < 200 || context.Response.StatusCode >= 400)
+                    if ((context.Response.StatusCode < 200 || context.Response.StatusCode >= 400) && (_contentTypeProvider.TryGetContentType(context.Request.Path.Value, out var contentType)))
                     {
-                        if (_contentTypeProvider.TryGetContentType(context.Request.Path.Value, out var contentType))
+
+                        var statusCodePagesFeature = context.Features.Get<IStatusCodePagesFeature>();
+                        if (statusCodePagesFeature != null)
                         {
-                            var statusCodePagesFeature = context.Features.Get<IStatusCodePagesFeature>();
-                            if (statusCodePagesFeature != null)
-                            {
-                                statusCodePagesFeature.Enabled = false;
-                            }
+                            statusCodePagesFeature.Enabled = false;
                         }
                     }
                 });

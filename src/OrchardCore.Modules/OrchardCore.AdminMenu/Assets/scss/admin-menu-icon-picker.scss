@@ -30,8 +30,6 @@
 :root[data-theme='darkmode'] {
 
     @import "../../../../OrchardCore.Themes/TheAdmin/Assets/scss/modules/theme/darkmode/_variables.scss";
-    @import "../../node_modules/bootstrap/scss/functions";
-    @import "../../node_modules/bootstrap/scss/variables";
 
     #iconPickerModal {
 
@@ -52,6 +50,4 @@
     .remove-icon, .sample-icon {
         width: 40px;
     }
-
-    @import "fontawesome-iconpicker.scss";
 }

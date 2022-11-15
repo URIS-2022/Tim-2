@@ -345,7 +345,7 @@ namespace OrchardCore.Autoroute.Handlers
             return result;
         }
 
-        private string GenerateRelativeUniquePath(List<AutorouteEntry> entries, string path, AutoroutePart context)
+        private static string GenerateRelativeUniquePath(List<AutorouteEntry> entries, string path, AutoroutePart context)
         {
             var version = 1;
             var unversionedPath = path;
