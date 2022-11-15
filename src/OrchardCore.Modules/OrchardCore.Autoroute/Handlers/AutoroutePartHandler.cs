@@ -205,7 +205,7 @@ namespace OrchardCore.Autoroute.Handlers
             {
                 var jItems = accessor.Invoke(content);
 
-                foreach (JObject jItem in jItems)
+                foreach (JToken jItem in jItems)
                 {
                     var contentItem = jItem.ToObject<ContentItem>();
                     var handlerAspect = await _contentManager.PopulateAspectAsync<RouteHandlerAspect>(contentItem);
