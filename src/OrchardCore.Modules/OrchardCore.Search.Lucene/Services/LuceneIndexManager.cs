@@ -32,6 +32,8 @@ namespace OrchardCore.Search.Lucene
     /// </summary>
     public class LuceneIndexManager : IDisposable
     {
+        private static readonly object _locker = new object();
+
         private readonly IClock _clock;
         private readonly ILogger _logger;
         private readonly string _rootPath;
@@ -440,7 +442,7 @@ namespace OrchardCore.Search.Lucene
         /// </summary>
         public void FreeReaderWriter()
         {
-            lock (this)
+            lock (_locker)
             {
                 foreach (var writer in _writers)
                 {
