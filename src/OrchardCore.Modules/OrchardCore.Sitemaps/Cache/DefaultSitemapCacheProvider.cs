@@ -69,7 +69,6 @@ namespace OrchardCore.Sitemaps.Cache
                 if (fileInfo.IsDirectory)
                 {
                     // Sitemap cache only stores files, so any folder that has been created by the user will be ignored.
-                    continue;
                 }
                 else
                 {
@@ -120,7 +119,6 @@ namespace OrchardCore.Sitemaps.Cache
                 if (fileInfo.IsDirectory)
                 {
                     // Sitemap cache only stores files, so any folder that has been created by the user will be ignored.
-                    continue;
                 }
                 else
                 {
@@ -173,7 +171,6 @@ namespace OrchardCore.Sitemaps.Cache
                 if (fileInfo.IsDirectory)
                 {
                     // Sitemap cache only stores files, so any folder that has been created by the user will be ignored.
-                    continue;
                 }
                 else
                 {
