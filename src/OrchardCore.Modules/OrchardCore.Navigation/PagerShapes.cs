@@ -34,7 +34,7 @@ namespace OrchardCore.Navigation
                     if (displaying.Shape.TryGetProperty("PagerId", out string pagerId) && !String.IsNullOrEmpty(pagerId))
                     {
                         displaying.Shape.Metadata.Alternates.Add("Pager__" + EncodeAlternateElement(pagerId));
-                    };
+                    }
                 });
 
             builder.Describe("PagerSlim")
@@ -50,7 +50,7 @@ namespace OrchardCore.Navigation
                     if (displaying.Shape.TryGetProperty("PagerId", out string pagerId) && !String.IsNullOrEmpty(pagerId))
                     {
                         displaying.Shape.Metadata.Alternates.Add("Pager__" + EncodeAlternateElement(pagerId));
-                    };
+                    }
                 });
 
             builder.Describe("Pager_Gap")
