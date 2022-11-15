@@ -926,29 +926,26 @@ namespace OrchardCore.ContentTypes.Controllers
 
             viewModel.TypePartDefinition = part;
 
-            if (part.PartDefinition.IsReusable())
+            if (part.PartDefinition.IsReusable() && part.DisplayName() != viewModel.DisplayName)
             {
-                if (part.DisplayName() != viewModel.DisplayName)
+                // Prevent null reference exception in validation
+                viewModel.DisplayName = viewModel.DisplayName?.Trim() ?? String.Empty;
+
+                if (String.IsNullOrWhiteSpace(viewModel.DisplayName))
                 {
-                    // Prevent null reference exception in validation
-                    viewModel.DisplayName = viewModel.DisplayName?.Trim() ?? String.Empty;
+                    ModelState.AddModelError("DisplayName", S["The Display Name can't be empty."]);
+                }
 
-                    if (String.IsNullOrWhiteSpace(viewModel.DisplayName))
-                    {
-                        ModelState.AddModelError("DisplayName", S["The Display Name can't be empty."]);
-                    }
+                if (typeDefinition.Parts.Any(t => t.Name != viewModel.Name && String.Equals(t.DisplayName()?.Trim(), viewModel.DisplayName.Trim(), StringComparison.OrdinalIgnoreCase)))
+                {
+                    ModelState.AddModelError("DisplayName", S["A part with the same Display Name already exists."]);
+                }
 
-                    if (typeDefinition.Parts.Any(t => t.Name != viewModel.Name && String.Equals(t.DisplayName()?.Trim(), viewModel.DisplayName.Trim(), StringComparison.OrdinalIgnoreCase)))
-                    {
-                        ModelState.AddModelError("DisplayName", S["A part with the same Display Name already exists."]);
-                    }
-
-                    if (!ModelState.IsValid)
-                    {
-                        viewModel.Shape = await _contentDefinitionDisplayManager.UpdateTypePartEditorAsync(part, _updateModelAccessor.ModelUpdater);
-                        await _documentStore.CancelAsync();
-                        return View(viewModel);
-                    }
+                if (!ModelState.IsValid)
+                {
+                    viewModel.Shape = await _contentDefinitionDisplayManager.UpdateTypePartEditorAsync(part, _updateModelAccessor.ModelUpdater);
+                    await _documentStore.CancelAsync();
+                    return View(viewModel);
                 }
             }
 

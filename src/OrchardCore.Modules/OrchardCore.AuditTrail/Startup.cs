@@ -138,7 +138,7 @@ namespace OrchardCore.AuditTrail
             });
         }
 
-        public override void Configure(IApplicationBuilder builder, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)
+        public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)
         {
             var adminControllerName = typeof(AdminController).ControllerName();
 
