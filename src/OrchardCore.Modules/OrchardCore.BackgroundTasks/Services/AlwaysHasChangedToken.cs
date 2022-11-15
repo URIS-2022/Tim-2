@@ -33,7 +33,7 @@ namespace OrchardCore.BackgroundTasks.Services
         }
 
         public void Dispose()
-        {
+        { 
         }
     }
 }
