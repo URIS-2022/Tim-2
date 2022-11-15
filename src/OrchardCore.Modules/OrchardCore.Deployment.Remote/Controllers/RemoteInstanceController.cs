@@ -67,9 +67,6 @@ namespace OrchardCore.Deployment.Remote.Controllers
 
             var count = remoteInstances.Count;
 
-            var startIndex = pager.GetStartIndex();
-            var pageSize = pager.PageSize;
-
             // Maintain previous route data when generating page links
             var routeData = new RouteData();
             routeData.Values.Add("Options.Search", options.Search);
