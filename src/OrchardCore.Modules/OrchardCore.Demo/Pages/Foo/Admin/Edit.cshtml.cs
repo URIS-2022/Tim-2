@@ -75,8 +75,6 @@ namespace OrchardCore.Demo.Pages
                 return NotFound();
             }
 
-            var updater = _updateModelAccessor.ModelUpdater;
-
             if (!ModelState.IsValid)
             {
                 await _session.CancelAsync();
