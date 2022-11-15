@@ -76,21 +76,21 @@ namespace OrchardCore.Deployment.Recipes
 
         private sealed class DeploymentPlansModel
         {
-            public DeploymentPlanModel[] Plans { get; set; }
+            public DeploymentPlanModel[] Plans { get; }
         }
 
         private sealed class DeploymentPlanModel
         {
-            public string Name { get; set; }
+            public string Name { get; }
 
-            public DeploymentStepModel[] Steps { get; set; }
+            public DeploymentStepModel[] Steps { get; }
         }
 
         private sealed class DeploymentStepModel
         {
-            public string Type { get; set; }
+            public string Type { get; }
 
-            public JObject Step { get; set; }
+            public JObject Step { get; }
         }
     }
 }
