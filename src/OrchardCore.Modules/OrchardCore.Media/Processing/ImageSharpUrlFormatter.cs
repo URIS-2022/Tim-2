@@ -28,7 +28,7 @@ namespace OrchardCore.Media.Processing
         WebP
     }
 
-    internal class ImageSharpUrlFormatter
+    internal static class ImageSharpUrlFormatter
     {
         public static string GetImageResizeUrl(string path, IDictionary<string, string> queryStringParams = null, int? width = null, int? height = null, ResizeMode resizeMode = ResizeMode.Undefined, int? quality = null, Format format = Format.Undefined, Anchor anchor = null, string bgcolor = null)
         {

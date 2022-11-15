@@ -227,12 +227,9 @@ namespace OrchardCore.Media.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && String.IsNullOrWhiteSpace(model.Name))
             {
-                if (String.IsNullOrWhiteSpace(model.Name))
-                {
-                    ModelState.AddModelError(nameof(MediaProfileViewModel.Name), S["The name is mandatory."]);
-                }
+                ModelState.AddModelError(nameof(MediaProfileViewModel.Name), S["The name is mandatory."]);
             }
 
             if (ModelState.IsValid)

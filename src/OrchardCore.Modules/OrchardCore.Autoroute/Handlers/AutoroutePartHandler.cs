@@ -205,7 +205,7 @@ namespace OrchardCore.Autoroute.Handlers
             {
                 var jItems = accessor.Invoke(content);
 
-                foreach (JObject jItem in jItems)
+                foreach (JToken jItem in jItems)
                 {
                     var contentItem = jItem.ToObject<ContentItem>();
                     var handlerAspect = await _contentManager.PopulateAspectAsync<RouteHandlerAspect>(contentItem);
@@ -272,7 +272,7 @@ namespace OrchardCore.Autoroute.Handlers
                         });
                     }
 
-                    var itemBasePath = (basePath.EndsWith('/') ? basePath : basePath + '/') + handlerAspect.Path.TrimStart('/');
+                    var itemBasePath = (basePath.EndsWith('/') ? basePath : $"{basePath}/") + handlerAspect.Path.TrimStart('/');
                     var childrenAspect = await _contentManager.PopulateAspectAsync<ContainedContentItemsAspect>(contentItem);
                     await PopulateContainedContentItemRoutesAsync(entries, containerContentItemId, childrenAspect, jItem, itemBasePath);
                 }
@@ -331,7 +331,7 @@ namespace OrchardCore.Autoroute.Handlers
                             path = path.Substring(currentItemBasePath.Length);
                         }
 
-                        var containedItemBasePath = (basePath.EndsWith('/') ? basePath : basePath + '/') + path;
+                        var containedItemBasePath = (basePath.EndsWith('/') ? basePath : $"{basePath}/") + path;
                         var childItemAspect = await _contentManager.PopulateAspectAsync<ContainedContentItemsAspect>(contentItem);
                         await ValidateContainedContentItemRoutesAsync(entries, containerContentItemId, childItemAspect, jItem, containedItemBasePath);
                     }
@@ -430,8 +430,9 @@ namespace OrchardCore.Autoroute.Handlers
         {
             var contentTypeDefinition = _contentDefinitionManager.GetTypeDefinition(part.ContentItem.ContentType);
             var contentTypePartDefinition = contentTypeDefinition.Parts.FirstOrDefault(x => String.Equals(x.PartDefinition.Name, nameof(AutoroutePart)));
-            var pattern = contentTypePartDefinition.GetSettings<AutoroutePartSettings>().Pattern;
-
+            var pattern = "";
+            if (contentTypePartDefinition != null)
+                pattern = contentTypePartDefinition.GetSettings<AutoroutePartSettings>().Pattern;
             return pattern;
         }
 

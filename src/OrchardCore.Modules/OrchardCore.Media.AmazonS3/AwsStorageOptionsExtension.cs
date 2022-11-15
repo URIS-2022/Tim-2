@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Amazon;
@@ -21,12 +21,9 @@ public static class AwsStorageOptionsExtension
             yield return new ValidationResult(Constants.ValidationMessages.BucketNameIsEmpty);
         }
 
-        if (options.AwsOptions is not null)
+        if (options.AwsOptions is not null && options.AwsOptions.Region is null)
         {
-            if (options.AwsOptions.Region is null)
-            {
-                yield return new ValidationResult(Constants.ValidationMessages.RegionEndpointIsEmpty);
-            }
+            yield return new ValidationResult(Constants.ValidationMessages.RegionEndpointIsEmpty);
         }
     }
 

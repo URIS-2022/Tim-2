@@ -27,14 +27,14 @@ namespace OrchardCore.ContentFields.Drivers
             S = localizer;
         }
 
-        public override IDisplayResult Display(DateTimeField field, BuildFieldDisplayContext context)
+        public override IDisplayResult Display(DateTimeField field, BuildFieldDisplayContext fieldDisplayContext)
         {
-            return Initialize<DisplayDateTimeFieldViewModel>(GetDisplayShapeType(context), async model =>
+            return Initialize<DisplayDateTimeFieldViewModel>(GetDisplayShapeType(fieldDisplayContext), async model =>
             {
                 model.LocalDateTime = field.Value == null ? (DateTime?)null : (await _localClock.ConvertToLocalAsync(field.Value.Value)).DateTime;
                 model.Field = field;
-                model.Part = context.ContentPart;
-                model.PartFieldDefinition = context.PartFieldDefinition;
+                model.Part = fieldDisplayContext.ContentPart;
+                model.PartFieldDefinition = fieldDisplayContext.PartFieldDefinition;
             })
             .Location("Detail", "Content")
             .Location("Summary", "Content");

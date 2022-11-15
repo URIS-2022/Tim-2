@@ -131,7 +131,7 @@ namespace OrchardCore.Media.Azure
             }
         }
 
-        private string GetMediaPath(ShellOptions shellOptions, ShellSettings shellSettings, string assetsPath)
+        private static string GetMediaPath(ShellOptions shellOptions, ShellSettings shellSettings, string assetsPath)
         {
             return PathExtensions.Combine(shellOptions.ShellsApplicationDataPath, shellOptions.ShellsContainerName, shellSettings.Name, assetsPath);
         }

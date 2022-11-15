@@ -73,20 +73,8 @@ namespace OrchardCore.Deployment.Recipes
 
             return _deploymentPlanService.CreateOrUpdateDeploymentPlansAsync(deploymentPlans);
         }
-
-        private sealed class DeploymentPlansModel
-        {
-            public DeploymentPlanModel[] Plans { get; }
-        }
-
-        private sealed class DeploymentPlanModel
-        {
-            public string Name { get; }
-
-            public DeploymentStepModel[] Steps { get; }
-        }
-
-        private sealed class DeploymentStepModel
+        
+        private class DeploymentStepModel
         {
             public string Type { get; }
 

@@ -22,7 +22,7 @@ namespace OrchardCore.Autoroute
             };
         }
 
-        private IEnumerable<Permission> GetPermissions()
+        private static IEnumerable<Permission> GetPermissions()
         {
             return new[]
             {

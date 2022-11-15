@@ -121,18 +121,18 @@ namespace OrchardCore.Demo.Controllers
             return View();
         }
 
-        public string GCCollect()
+        public static string GCCollect()
         {
             GC.Collect();
             return "OK";
         }
 
-        public ActionResult IndexError()
+        public static ActionResult IndexError()
         {
             throw new Exception("ERROR!!!!");
         }
 
-        public string CreateTask()
+        public static string CreateTask()
         {
             ShellScope.AddDeferredTask(scope =>
             {

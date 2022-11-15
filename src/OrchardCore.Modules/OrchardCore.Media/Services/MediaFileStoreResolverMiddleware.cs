@@ -108,7 +108,6 @@ namespace OrchardCore.Media.Services
 
             // Always call next, this middleware always passes.
             await _next(context);
-            return;
         }
     }
 }

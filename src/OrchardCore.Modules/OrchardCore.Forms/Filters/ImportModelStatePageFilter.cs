@@ -31,10 +31,12 @@ namespace OrchardCore.Forms.Filters
 
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
+            //to be implemented
         }
 
         public void OnPageHandlerSelected(PageHandlerSelectedContext context)
         {
+            //to be implemented
         }
     }
 }

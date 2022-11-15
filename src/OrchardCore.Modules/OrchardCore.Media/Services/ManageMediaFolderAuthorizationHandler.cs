@@ -22,7 +22,6 @@ namespace OrchardCore.Media.Services
         private string _mediaFieldsFolder;
         private string _usersFolder;
         private readonly MediaOptions _mediaOptions;
-        private Dictionary<string, Permission> folderPermissios = new Dictionary<string, Permission>();
         private readonly IUserAssetFolderNameProvider _userAssetFolderNameProvider;
 
         public ManageMediaFolderAuthorizationHandler(IServiceProvider serviceProvider,

@@ -133,6 +133,7 @@ public class DbConnectionValidator : IDbConnectionValidator
         }
         catch
         {
+            //just because xD
         }
 
         // The 'Document' table exists.

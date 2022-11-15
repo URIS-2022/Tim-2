@@ -267,7 +267,7 @@ namespace OrchardCore.Layers.Controllers
                 return NotFound();
             }
 
-            var widgets = await _layerService.GetLayerWidgetsMetadataAsync(c => c.Latest == true);
+            var widgets = await _layerService.GetLayerWidgetsMetadataAsync(c => c.Latest);
 
             if (!widgets.Any(x => String.Equals(x.Layer, name, StringComparison.OrdinalIgnoreCase)))
             {
